@@ -130,12 +130,14 @@
 #let kai(it) = text(it, font: font_kai)
 
 #let bb = (it) => [#strong[#it]]
+#let def = (it) => [#strong[#it]]
 
-#let definition(it) = {block(width: 100%)[
+#let definition(it, name: "") = {block(width: 100%)[
   #definition_counter.update(x => (x + 1))
   #strong[
     #hei[定义]#locate(loc => [#counter(heading).at(loc).at(0)]).#definition_counter.display()
   ]
+  #if (name != "") [(#kai[#name])]
   #math.space#it
 ];fake_par}
 
