@@ -1,3 +1,5 @@
+#import "@preview/tablex:0.0.8": tablex, colspanx, rowspanx, hlinex, vlinex, cellx
+
 #let font_song = ("New Computer Modern", "Source Han Serif SC", "Simsun", "STSong")
 #let font_fangsong = ("FangSong", "STFangSong")
 #let font_hei = ("Source Han Sans SC", "Source Han Sans HW SC", "SimHei", "Microsoft YaHei", "STHeiti")
@@ -206,3 +208,39 @@
 #let bug(it) = named_block(it, name: "Bug", color: rgb(204, 51, 153))
 #let quote(it) = named_block(it, name: "Quote", color: rgb(132, 90, 231))
 #let cite(it) = named_block(it, name: "Cite", color: rgb(132, 90, 231))
+
+#let table3-global-align = align
+#let table3(
+	..args,
+	inset: 0.5em,
+	stroke: 0.5pt,
+  width: 100%,
+	align: center + horizon,
+	columns: (1fr)
+) = {
+  set table3-global-align(center)
+  box(
+    width: width,
+    clip: true,
+    stack(
+      tablex(
+        ..args,
+        inset: inset,
+        stroke: stroke,
+        align: align,
+        columns: columns,
+        map-hlines: h => {
+          if (h.y == 0) {
+            (..h, stroke: (stroke * 2) + black)
+          } else if (h.y == 1) {
+            (..h, stroke: stroke + black)
+          } else {
+            (..h, stroke: 0pt)
+          }
+        },
+        auto-vlines: false,
+      ),
+      line(stroke: (stroke * 2) + black, length: 100%)
+    )
+  )
+}

@@ -282,7 +282,7 @@ $
 ]
 
 #note[
-	计算点到平面的距离时，直接套用公式是一种方法。还可以通过点坐标和平面的法向量得到点到平面的垂线的点向式方程，从而计算点到平面的距离。
+	计算点到平面的距离时，直接套用公式是一种方法。还可以通过点坐标和平面的法向量得到点到平面的垂线的点向式方程，将这一垂线的参数式方程代入平面方程即可解出垂足坐标，从而用两点距离公式得到距离。
 ]
 
 == 空间直线
@@ -352,4 +352,216 @@ TBD
 
 === 两条异面直线的距离
 
-=== 
+#theorem(name: "两条异面直线的距离公式")[
+	设直线 $L_1$ 和 $L_2$ 是两条异面直线，直线 $L_1$ 的方向矢量为 $vv_1$，直线 $L_2$ 的方向矢量为 $vv_2$，则两条直线的公垂线 $L$ 的方向矢量为 $vv = vv_1 times vv_2$。取 $M_1 in L_1,space M_2 in L_2$，则 $L_1,L_2$ 的距离为
+	$ d = (arrow(M_1 M_2) dot (vv))/abs(vv) = (arrow(M_1 M_2) dot (vv_1 times vv_2))/abs(vv_1 times vv_2) $
+]
+
+== 平面束
+
+#definition[
+	称过直线 $L$ 的所有平面构成的集合为直线 $L$ 的#def[平面束]。设直线 $L$ 的方程为
+	$ cases(A_1 x + B_1 y + C_1 z + D_1 = 0, A_2 x + B_2 y + C_2z + D_2 = 0) $
+	其中，$A_1,B_1,C_1$ 和 $A_2,B_2,C_2$ 不对应成比例。则直线 $L$ 的#def[平面束方程]为：
+	$ lambda(A_1 x + B_1 y + C_1 z + D_1) + mu(A_2 x + B_2 y + C_2 z + D_2) = 0 $
+]
+
+== 曲面
+
+=== 曲面
+
+#definition(name: "曲面方程")[
+	若曲面 $S$ 与三元方程 $F(x,y,z)=0$ 有如下关系：
+
+	(1) $S$ 上任一点的坐标都满足方程 $F(x, y, z) = 0$；
+	
+	(2) 坐标满足方程 $F(x, y, z) = 0$ 的点都在 $S$ 上。
+
+	那么，方程 $F(x, y, z)=0$ 叫做曲面 $S$ 的方程；曲面 $S$ 叫做 $F(x,y,z)=0$ 的图形。
+]
+
+#definition(name: "球面方程")[
+	球心在点 $M_0(x_0,y_0,z_0)$，半径为 $R$ 的#def[球面方程]为：
+	$ (x-x_0)^2 + (y-y_0)^2 + (z-z_0)^2 = R^2 $
+]
+
+#definition(name: "曲面的参数方程")[
+	曲面 $S$ 的参数方程为：
+	$ cases(x=x(u,v), y=y(u,v), z=z(u,v)) $
+	其中 $u,v$ 是参数。
+
+	#note[
+		特别地，球面的参数方程为：
+		$ cases(
+			x = x_0 + R sin phi cos theta,
+			y = y_0 + R sin phi sin theta,
+			z = z_0 + R cos phi
+		), quad (0 <= phi <= pi,space 0 <= theta <= 2 pi) $
+	]
+]
+
+=== 空间曲线
+
+#definition(name: "空间曲线的一般式方程")[
+	空间曲线 $C$ 可看做空间两曲面的交线，即方程组
+	$ cases(F(x,y,z) = 0, G(x,y,z) = 0) $
+]
+
+#definition(name: "空间曲线的参数方程")[
+	空间曲线 $C$ 的参数方程为：
+	$ cases(x = x(t), y = y(t), z = z(t)) $
+	其中 $t$ 是参数。
+]
+
+#definition(name: "空间曲线在平面上的投影")[
+	设空间曲线 $Gamma$ 的方程为 $display(cases(F_1(x,y,z)=0,F_2(x,y,z)=0))$，消去变量 $z$ 得 $G(x,y)=0$。称 $G(x,y)=0$ 为曲线 $Gamma$ 在 $x O y$ 平面上的#def[投影柱面]；称 $display(cases(G(x,y)=0,z=0))$ 为曲线 $Gamma$ 在 $x O y$ 平面上的#def[投影曲线]。类似的，可以得到在 $y O z$ 和 $x O z$ 平面上的投影曲线和投影柱面的定义。
+
+	#warning[当心隐含的定义域范围限制。]
+]
+
+=== 柱面
+
+#definition[
+	由动直线 $L$ 沿着一定曲线 $Gamma$ 平行移动所形成的曲面称为#def[柱面]。称动直线 $L$ 为柱面的#def[母线]，定曲线 $Gamma$ 为柱面的#def[准线]。
+]
+
+=== 锥面
+
+#definition[
+	过空间一定点 $O$ 的一条动直线 $L$，沿空间_不过定点_的定曲线 $Gamma$ 移动所形成的曲面 $Sigma$ 称为#def[锥面]。称定点 $O$ 为锥面的#def[顶点]，动直线 $L$ 为锥面的#def[母线]，定曲线 $Gamma$ 为锥面的#def[准线]。
+]
+
+#example[
+	#problem[
+		设锥面 $Sigma$ 的准线 $Gamma$ 的方程为 $display(cases(F(x,y)=0,z=h))space (h!=0)$，且以原点为顶点，试求锥面 $Sigma$ 的方程。
+	]
+
+	#solution[
+		$forall M(x,y,z) in Sigma$，设过点 $M$ 的母线与准线 $Gamma$ 的交点为 $M_1(x_1,y_1,h)$，则 $arrow(O M_1) parallel arrow(O M)$，故 
+		$ x_1/x = y_1/y=h/z $
+		解得 $display(x_1 = h/z x\,space y_1 = h/z y)$，故所求锥面方程为 $F(display(h/z x\,h/z y))=0$。
+	]
+
+	#tip[
+		为什么有条件 $h!=0$？因为锥面的准线不能过其顶点。
+	]
+
+	#note[
+		特别地，将这里的准线方程换为 $display(cases(display(x^2/a^2 + y^2/b^2 =1), z=c)) space (c!=0)$，则锥面方程为 $display(x^2/a^2 + y^2/b^2 = z^2/c^2)$。称为#def[椭圆锥面]。将准线方程换为 $display(cases(x^2+y^2=a^2,z=c)) space (c!=0)$，则锥面方程为 $x^2+y^2=display(a^2/c^2 z^2)$，称为#def[圆锥面]。
+	]
+]
+
+=== 旋转曲面
+
+#definition[
+	由一条曲线，绕一条定直线旋转，所生成的曲面称为#def[旋转曲面]。称这条定直线为旋转曲面的#def[旋转轴]。
+]
+
+#example[
+	#problem[
+		设曲线 $Gamma$ 的参数方程为 $display(cases(x=x(t),y=y(t),z=z(t)))$，假定 $Gamma$ 不是垂直于 $z$ 轴的平面上的曲线，求 $Gamma$ 绕 $z$ 轴旋转而成的旋转曲面 $Sigma$ 的方程。
+	]
+
+	#solution[
+		$forall M(x,y,z) in Sigma$，设点 $M$ 由点 $M_1(x_1,y_1,z) in Sigma$ 绕 $z$ 轴旋转而得，对应的参数是 $t_1$，则
+		$ x_1=x(t_1),quad y_1=y(t_1),quad z=z(t_1) $
+		解得 $x_1=x(z^(-1)(z)), space y_1 = y(z^(-1)(z))$。故所求曲面方程即
+		$ x^2+y^2 = [x(z^(-1)(z))]^2 + [y(z^(-1)(z))]^2 $
+	]
+]
+
+#conclusion[
+	对于部分特殊曲线和旋转轴对应的旋转曲面方程，有下表：
+
+	#table3(
+		width: 70%,
+		columns: (2fr, 0.7fr, 2.5fr),
+		[*曲线*], [*旋转轴*], [*旋转曲面方程*],
+		[#v(0.5em)$display(Gamma\:space cases(f(y,z)=0,x=0))$#v(0.5em)], [$z$ 轴], $f(pm sqrt(x^2+y^2),z)=0$,
+		[#v(0.5em)$display(Gamma\:space cases(f(y,z)=0,x=0))$#v(0.5em)], [$y$ 轴], $f(y,pm sqrt(x^2+z^2))=0$,
+		[#v(0.5em)$display(Gamma\:space cases(f(x,z)=0,y=0))$#v(0.5em)], [$z$ 轴], $f(pm sqrt(x^2+y^2),z)=0$,
+		[#v(0.5em)$display(Gamma\:space cases(f(x,z)=0,y=0))$#v(0.5em)], [$x$ 轴], $f(x,pm sqrt(y^2+z^2))=0$,
+		[#v(0.5em)$display(Gamma\:space cases(f(x,y)=0,z=0))$#v(0.5em)], [$x$ 轴], $f(x,pm sqrt(y^2+z^2))=0$,
+		[#v(0.5em)$display(Gamma\:space cases(f(x,y)=0,z=0))$#v(0.5em)], [$y$ 轴], $f(pm sqrt(x^2+z^2),y)=0$
+	)
+]
+
+#example[
+	#problem[
+		$z=sqrt(x^2+y^2)$ 在空间解析几何中表示什么图形。
+	]
+	
+	#solution[
+		可以发现，这是旋转轴为 $z$ 轴的旋转曲面。可看做曲线 $display(cases(z=sqrt(x^2+y^2),x=0))$ 绕 $z$ 轴旋转的结果。解得 $display(cases(z=|y|,x=0))$。画图可知，这是一个圆锥面。
+	]
+]
+
+== 二次曲面
+
+#definition[
+	二次曲线$ a x^2 + b y^2 + c z^2 + d x y + e x z + f y z + g x + h y + i z + j = 0 $所表示的曲面称为#def[二次曲面]。一般用#def[截痕法]来了解二次曲面方程所表示曲面的总体特征。
+]
+
+=== 椭球面
+
+#definition[
+	二次曲线 $display(x^2/a^2 + y^2/b^2 + z^2/c^2 = 1)$ 所表示的二次曲面称为#def[椭球面]。
+
+	用平行于坐标平面的平面对椭球面进行切割，得到是椭圆。
+
+	特别地，当 $a=b$ 时，这是一个以 $z$ 轴为旋转轴的椭球面，称为#def[旋转椭球面]。当 $a=b=c$ 时，称为#def[球面]。
+]
+
+=== 椭圆抛物面
+
+#definition[
+	二次曲线 $z=display(x^2/a^2+y^2/b^2)$ 所表示的二次曲面称为#def[椭圆抛物面]。
+
+	用平面 $x=0$ 或 $y=0$ 切割椭圆抛物面，得到的是抛物线；用平面 $z=h$ 切割，得到的是椭圆。
+
+	特别地，当 $a=b$ 时，这是一个以 $z$ 轴为旋转轴的椭圆抛物面，称为#def[旋转抛物面]。
+]
+
+=== 单叶双曲面
+
+#definition[
+	二次曲线 $display(x^2/a^2+y^2/b^2-z^2/c^2=1)$ 所表示的二次曲面称为#def[单叶双曲面]。
+
+	用平面 $x=0$ 或 $y=0$ 切割单叶双曲面，得到的是双曲线；用平面 $z=h$ 切割，得到是椭圆。
+]
+
+=== 双叶双曲面
+
+#definition[
+	二次曲线 $display(x^2/a^2+y^2/b^2-z^2/c^2=-1)$ 所表示的二次曲面称为#def[双叶双曲面]。
+
+	切割双叶双曲面得到的图像与单叶双曲面类似。
+]
+
+=== 椭圆锥面
+
+#definition[
+	二次曲线 $display(x^2/a^2+y^2/b^2-z^2/c^2=0)$ 所表示的二次曲面称为#def[椭圆锥面]。
+]
+
+=== 双曲抛物面
+
+#definition[
+	二次曲线 $display(z=-x^2/a^2+y^2/b^2)$ 所表示的二次曲面称为#def[双曲抛物面]。
+]
+
+== 旋转变换$""^*$
+
+#definition[
+	#set math.mat(delim: "(")
+	在二维平面直角坐标系中，我们把平面围绕坐标原点按逆时针方向旋转 $phi$ 角的变换，称为旋转变换，记作 $bold(R)_phi$。$forall alpha = display(mat(x;y))$，设 $bold(R)_phi(alpha)$ 的坐标为 $display(mat(x';y'))$，则
+	$
+	mat(x';y') = mat(cos phi,-sin phi;sin phi,cos phi) mat(x;y)
+	quad => quad
+	cases(
+		x' = x cos phi - y sin phi,
+		y' = x sin phi + y cos phi,
+	)
+	$
+	#set math.mat(delim: "|")
+]
