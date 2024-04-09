@@ -303,7 +303,7 @@ $
 	当 $l,m,n$ _不全为 $0$_ 时，称为#def[直线的点向式方程]。
 
 	#warning[
-		1. 当 $l=0$ 时形式不变，但应理解为 $x=x_0, display((y-y_0)/m = (z-z_0)/n)$；另外两项同理。
+		1. 当 $l=0$ 时形式不变，但应理解为 $x=x_0$ 且 $display((y-y_0)/m = (z-z_0)/n)$；对于 $m,n$ 同理。
 
 		2. 方程不作化简，如 $display((x-6/5)/3=(y+2)/(-2)=(z-1)/3)$ _不能_化简为 $display((5x-6)/15=-(y+3)/2=(z-1)/3)$。
 	]
@@ -354,7 +354,7 @@ TBD
 
 #theorem(name: "两条异面直线的距离公式")[
 	设直线 $L_1$ 和 $L_2$ 是两条异面直线，直线 $L_1$ 的方向矢量为 $vv_1$，直线 $L_2$ 的方向矢量为 $vv_2$，则两条直线的公垂线 $L$ 的方向矢量为 $vv = vv_1 times vv_2$。取 $M_1 in L_1,space M_2 in L_2$，则 $L_1,L_2$ 的距离为
-	$ d = (arrow(M_1 M_2) dot (vv))/abs(vv) = (arrow(M_1 M_2) dot (vv_1 times vv_2))/abs(vv_1 times vv_2) $
+	$ d = (arrow(M_1 M_2) dot vv)/abs(vv) = (arrow(M_1 M_2) dot (vv_1 times vv_2))/abs(vv_1 times vv_2) $
 ]
 
 == 平面束
@@ -416,7 +416,7 @@ TBD
 #definition(name: "空间曲线在平面上的投影")[
 	设空间曲线 $Gamma$ 的方程为 $display(cases(F_1(x,y,z)=0,F_2(x,y,z)=0))$，消去变量 $z$ 得 $G(x,y)=0$。称 $G(x,y)=0$ 为曲线 $Gamma$ 在 $x O y$ 平面上的#def[投影柱面]；称 $display(cases(G(x,y)=0,z=0))$ 为曲线 $Gamma$ 在 $x O y$ 平面上的#def[投影曲线]。类似的，可以得到在 $y O z$ 和 $x O z$ 平面上的投影曲线和投影柱面的定义。
 
-	#warning[当心隐含的定义域范围限制。]
+	#caution[当心隐含的定义域范围限制。]
 ]
 
 === 柱面
@@ -442,13 +442,11 @@ TBD
 		解得 $display(x_1 = h/z x\,space y_1 = h/z y)$，故所求锥面方程为 $F(display(h/z x\,h/z y))=0$。
 	]
 
-	#tip[
+	#note[
 		为什么有条件 $h!=0$？因为锥面的准线不能过其顶点。
 	]
 
-	#note[
-		特别地，将这里的准线方程换为 $display(cases(display(x^2/a^2 + y^2/b^2 =1), z=c)) space (c!=0)$，则锥面方程为 $display(x^2/a^2 + y^2/b^2 = z^2/c^2)$。称为#def[椭圆锥面]。将准线方程换为 $display(cases(x^2+y^2=a^2,z=c)) space (c!=0)$，则锥面方程为 $x^2+y^2=display(a^2/c^2 z^2)$，称为#def[圆锥面]。
-	]
+	特别地，将这里的准线方程换为 $display(cases(display(x^2/a^2 + y^2/b^2 =1), z=c)) space (c!=0)$，则锥面方程为 $display(x^2/a^2 + y^2/b^2 = z^2/c^2)$。称为#def[椭圆锥面]。将准线方程换为 $display(cases(x^2+y^2=a^2,z=c)) space (c!=0)$，则锥面方程为 $x^2+y^2=display(a^2/c^2 z^2)$，称为#def[圆锥面]。
 ]
 
 === 旋转曲面

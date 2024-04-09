@@ -22,10 +22,10 @@
 #let dx = [$dif x$]
 #let dy = [$dif y$]
 
-= 级数
+= 数项级数
 
 #definition[
-	给定数列 ${a_n}$，将其每一项依次用“$+$”号连接起来的表达式 $a_1 + a_2 + dots.c + a_n + dots.c = ss a_n$ 称为#bb[无穷级数]，
+	给定数列 ${a_n}$，将其每一项依次用“$+$”号连接起来的表达式 $a_1 + a_2 + dots.c + a_n + dots.c = ss a_n$ 称为#bb[无穷级数]。
 ]
 
 #definition[
@@ -485,7 +485,7 @@
 	]
 ]
 
-#important[
+#tip[
 	【求幂级数的收敛域】
 
 	- 先根据上面的做法来确定收敛半径 $R$。（童雯雯老师要求写上：所以，收敛半径为 $(-R,R)$）
@@ -551,3 +551,208 @@
 		]
 	]
 ]
+
+=== 将函数展开成幂级数
+
+#theorem[
+	如果函数 $f(x)$ 在 $U(x_0, delta)$ 内具有任意阶导数，_且_在 $U(x_0,delta)$ 内能展开成 $(x-x_0)$ 的幂级数，即 $f(x) = sf(0) a_n (x-x_0)^n,space x in (x_0 - delta, x_0 + delta)$，则其系数 $a_n = display(1/(n!) f^((n))(x_0)),space n=1,2,dots.c$，且展开式是唯一的。
+
+	#tip[
+		据此，我们可以通过函数的展开式来求函数的 $n$ 阶导数。
+
+		#caution[
+			不要忽略阶乘！
+		]	
+	]
+]
+
+==== 函数能展开成泰勒级数的条件
+
+#definition[
+	称 $display(f(x) = f(x_0)+f'(x_0)(x-x_0) + (f''(x_0))/2 (x-x_0)^2 + dots.c + (f^((n))(x_0))/(x-x_0)^n + dots.c),space x in (x_0-delta, x_0+delta)$ 为 $f(x)$ 在 $x=x_0$ 处的#def[泰勒级数]。当 $x_0=0$ 时，称这一级数为#def[麦克劳林级数]。
+]
+
+#theorem(name: "函数能展开成幂级数的必要条件")[
+	设函数 $f(x)$ 在点 $x_0$ 的某一邻域内具有各阶导数，则 $f(x)$ 在该邻域内能展开成泰勒级数的充分必要条件是 $f(x)$ 的泰勒公式中的余项 $R_n (x)=display((f^((n+1))(xi))/((n+1)!) (x-x_0)^(n+1))$ 当 $n->+oo$ 时趋向于 $0$。此时有
+	$ f(x) = ssf(0) (f^((n)) (x_0))/(n!) (x-x_0)^n $
+
+	#proof[
+		*必要性*：若 $R_n (x)$ 的极限不为 $0$，则幂级数的和函数不能收敛到定值 $f(x)$。
+
+		*充分性*：即证 $display(lim_(n->+oo)) S_n (x) = f(x)$，由泰勒公式知 $f(x) = S_n (x) + R_n (x)$，故 $display(lim_(n->+oo)) S_n (x) = display(lim_(n->+oo)) (f(x) - R(x)) = f(x) - 0 = f(x)$。
+	]
+]
+
+==== 将函数展开成幂级数的方法
+
+直接求导的方法自不必说。
+
+#example[
+	#problem[
+		将 $f(x)=arctan x$ 展开成 $x$ 的幂级数。
+	]
+
+	#solution[
+		$ f'(x) = 1/(1+x^2)=1-x^2+x^4-x^6+dots.c+(-1)^n x^(2n) + dots.c,space abs(x)<1 $
+		$ => arctan x = arctan 0 + int_0^x 1/(1+x^2) dif x = x - x^3/3+x^5/5-x^7/7+dots.c+(-1)^n (x^(2n+1))/(2n+1) + dots.c,space abs(x)<1 $
+	]
+]
+
+#example[
+	#problem[
+		将 $f(x)=display(x/(1+x-2x^2))$ 展开成 $x$ 的幂级数。
+	]
+
+	#solution[
+		$ f(x) = x/((1-x)(1+2x)) = 1/3 (1/(1-x) - 1/(1+2x)) $
+		其中 $display(1/(1-x) = ssf(0) x^n\,space abs(x)<1)$，$display(1/(1+2x) = ssf(0) (-2)^n x^n \,space abs(2x)<1)$，则
+		$ f(x)=1/3 ssf(0) (x^n - (-2)^n x^n) = ssf(0) (1-(-2)^n)/3 x^n, space abs(x)<1/2 $
+	]
+]
+
+==== 利用幂级数展开求函数积分
+
+利用幂级数展开求解不定积分的情况：
+
+#example[
+	#problem[
+		求 $display(int (sin x)/x) dif x$
+	]
+
+	#solution[
+		$
+		sin x = ssf(0) (-1)^n (x^(2n+1))/((2n+1)!),space x in (-oo,+oo)
+		=> (sin x)/x = ssf(0) (-1)^n (x^(2n))/((2n+1)!),space x in (-oo,+oo)\
+		=> "原式" = C + ssf(0) (-1)^n (x^(2n+1))/((2n+1) dot ((2n+1)!)),space x in (-oo,+oo)
+		$
+	]
+]
+
+应用此方法，也可以求函数的定积分：
+
+#example[
+	#problem[
+		求 $display(int_0^1 e^(-x^2) dif x)$。
+	]
+	
+	#solution[
+		$
+		e^(-x^2) = ssf(0) ((-1)^n x^(2n))/(n!) ,space x in (-oo,+oo) \
+		=> "原式" = lr((ssf(0) ((-1)^n x^(2n+1))/((2n+1) dot n!))|)_0^1
+		= ssf(0) ((-1)^n)/((2n+1) dot n!)
+		$
+	]
+]
+
+
+
+== 傅里叶级数
+
+=== 三角级数
+
+简谐振动：$y = A sin(omega x + phi) = a cos omega x + b sin omega x$，周期为 $T$。
+
+简谐振动的叠加：$y_k =a_k cos k omega x + b_k sin k omega x$，周期为 $display(T/k)$。则 $ss y_k=ss (a_k cos k omega  + b_k sin k omega x)$ 以 $T$ 为周期。
+
+三角级数可以理解为无数个简谐振动的叠加。
+
+#definition[
+	将下式称为#def[三角级数]：
+	$
+	(a_0)/2 + sss (a_n cos n omega x + b_n sin n omega x)
+	" 或 "
+	(a_0)/2 + sss (a_n cos (n pi x)/l + b_n sin (n pi x)/l)
+	$
+	其中，$a_n,b_n$ 称为#def[三角级数的系数]。将
+	$
+	&1,cos omega x,sin omega x,cos 2 omega x,sin 2 omega x, dots.c,cos n omega,sin n omega x,dots.c\
+	" 或 "&
+	1,cos (pi x)/l,sin (pi x)/l,cos (2 pi x)/l,sin (2 pi x)/l, dots.c,cos (n pi x)/l,sin (n pi x)/l,dots.c
+	$
+	称为#def[三角函数系]。
+]
+
+#theorem(name: "三角函数系的正交性")[
+	三角函数系中的任意两个不同函数的乘积在 $[-l,l]$ 上的积分等于零。
+]
+
+#theorem(name: "三角函数的和函数与系数的关系")[
+	设在整个数轴上有
+	$ f(x) = (a_0)/2 + sss (a_n cos (n pi x)/l + b_n sin (n pi x)/l) $
+	并设上式右端逐项可积，且乘以 $display(cos (n pi x)/l)$ 或 $display(sin (n pi x)/l)$ 后仍逐项可积，则
+	$
+	a_n &= 1/l int_(-l)^l f(x) cos (n pi x)/l dif x, space n=0,1,2,3,dots.c\
+	b_n &= 1/l int_(-l)^l f(x) sin (n pi x)/l dif x, space n=1,2,3,dots.c\
+	$
+
+	#proof[
+		TBD
+	]
+]
+
+=== 傅里叶级数
+
+#definition(name: "傅里叶级数")[
+	设 $f(x)$ 是以 $2l$ 为周期的周期函数，且 $f(x)$ 在 $[-l,l]$ 上可积，称
+	$
+	a_n &= 1/l int_(-l)^l f(x) cos (n pi x)/l dif x, space n=0,1,2,3,dots.c\
+	b_n &= 1/l int_(-l)^l f(x) sin (n pi x)/l dif x, space n=1,2,3,dots.c\
+	$
+	为 $f(x)$ 的#def[傅里叶系数]，称三角级数
+	$
+	(a_0)/2 + sss (a_n cos (n pi x)/l + b_n sin (n pi x)/l)
+	$
+	为 $f(x)$ 的#def[傅里叶级数]。记作
+	$
+	f(x) sim (a_0)/2 + sss (a_n cos (n pi x)/l + b_n sin (n pi x)/l)
+	$
+
+	#warning[
+		注意两者之间不能简单的划等号，因为我们并不能保证这一函数项级数收敛。
+	]
+]
+
+#theorem(name: "狄利克雷定理")[
+	设 $f(x)$ 是以 $2l$ 为周期的周期函数，且 $f(x)$ 在 $[-l,l]$ 上_逐段光滑_，则 $f(x)$ 的傅里叶级数在每一点 $x$ 上都收敛，且和函数满足
+	$ S(x) = cases(
+		f(x)\, quad & x "是 " f(x) "的连续点" ,
+		display((f(x-0)+f(x+0))/2)\, quad& x "是 " f(x) "的第一类间断点",
+		display((f(-l+0)+f(l-0))/2)\,quad& x=pm l
+	) $
+	其中 $display(f(a-0)=lim_(x->a^-) f(x)\,space f(a+0)=lim_(x->a^+) f(x))$。
+]
+
+#definition(name: "正弦傅里叶级数")[
+	当 $f(x)$ 为奇函数时，它的傅里叶系数为
+	$
+	a_n &= 0, space n=0,1,2,3,dots.c\
+	b_n &= 2/l int_0^l f(x) sin (n pi x)/l dif x, space n=1,2,3,dots.c
+	$
+	这时 $f(x) sim display(sss b_n sin (n pi x)/l)$ 称为 $f(x)$ 的#def[正弦傅里叶级数]，简称#def[正弦级数]。
+]
+
+#definition(name: "余弦傅里叶级数")[
+	当 $f(x)$ 为偶函数时，它的傅里叶系数为
+	$
+	a_n &= 2/l int_0^l f(x) cos (n pi x)/l dif x, space n=0,1,2,3,dots.c\
+	b_n &= 0, space n=1,2,3,dots.c
+	$
+	这时 $f(x) sim display(a_0/2 + sss a_n cos (n pi x)/l)$ 称为 $f(x)$ 的#def[余弦傅里叶级数]，简称#def[余弦级数]。
+]
+
+
+=== 周期延拓
+
+#definition[
+	对定义在 $[-l,l]$ 上的函数 $f(x)$ 作#def[周期延拓]得
+	$ F(x) = cases(
+		f(x)\,quad &x in [-l,l),
+		f(x-2k l)\,quad &x in (-oo,-l) union [l,+oo)
+	) $
+	对其进行傅里叶展开得
+	$
+	f(x) sim (a_0)/2 + sss (a_n cos (n pi x)/l + b_n sin (n pi x)/l)
+	$
+]
+
+=== 奇延拓和偶延拓
