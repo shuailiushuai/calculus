@@ -28,7 +28,6 @@
 #let nn = math.bold(math.italic("n"))
 #let mm = math.bold(math.italic("m"))
 
-
 = 行列式与矢量代数
 
 == 行列式

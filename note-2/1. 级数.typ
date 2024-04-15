@@ -1,4 +1,5 @@
 #import "../template.typ": *
+#import "@preview/xarrow:0.3.0": xarrow
 
 #show: project.with(
 	course: "Calculus II",
@@ -195,8 +196,7 @@
 
 	(3) 当 $l=1$ 时，比值判别法失效。
 
-	#proof[
-	]
+	// #proof[]
 ]
 
 
@@ -209,16 +209,14 @@
 
 	(3) 当 $l=1$ 时，比值判别法失效。
 
-	#proof[
-	]
+	// #proof[]
 ]
 
 
 #theorem(name: "积分判别法")[
 	设函数 $f(x)$ 在 $[1, +oo)$ 上单调递减，则级数 $ss f(n)$ 与反常积分 $display(int_1^(+oo) f(x) dx)$ 具有相同的敛散性。
 
-	#proof[
-	]
+	// #proof[]
 ]
 
 == 一般项级数的敛散性判别
@@ -756,3 +754,49 @@
 ]
 
 === 奇延拓和偶延拓
+
+求解定义在 $[0,l]$ 上的函数 $f(x)$ 的傅里叶级数时，可以将其延拓到 $(-l,l)$ 上，从而求得傅里叶级数。
+
+$
+f(x),space x in [0,l]
+xarrow("延拓")
+F(x) = cases(
+	f(x)\,quad& x in [0,l),
+	"任意函数" \,quad& x in (-l,0)
+)
+$
+
+为了计算方便，我们一般将 $f(x)$ 延拓成奇函数或偶函数，这就是奇延拓与偶延拓。
+
+#definition(name: "奇延拓")[
+	对定义在 $[0,l]$ 上的函数 $f(x)$ 作#def[奇延拓]得
+	$ F(x) = cases(
+		f(x)\,quad &x in (0,l),
+		0\,quad& x=0,
+		-f(-x)\,quad &x in (-l,0)
+	) $
+	对其进行傅里叶展开得 
+	$
+	F(x) sim sss b_n sin (n pi x)/l\,space -l<=x<=l
+	$
+	从而得 $f(x)$ 的#def[正弦傅里叶级数]。
+	$
+	f(x) sim sss b_n sin (n pi x)/l\,space 0<=x<=l
+	$
+]
+
+#definition(name: "偶延拓")[
+	对定义在 $[0,l]$ 上的函数 $f(x)$ 作#def[偶延拓]得
+	$ F(x) = cases(
+		f(x)\,quad &x in [0,l),
+		f(-x)\,quad &x in (-l,0)
+	) $
+	对其进行傅里叶展开得 
+	$
+	F(x) sim a_0/2 + sss a_n cos (n pi x)/l\,space -l<=x<=l
+	$
+	从而得 $f(x)$ 的#def[余弦傅里叶级数]。
+	$
+	f(x) sim a_0/2 + sss a_n cos (n pi x)/l\,space 0<=x<=l
+	$
+]
