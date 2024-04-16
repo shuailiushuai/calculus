@@ -112,12 +112,6 @@
 		]
 		- 二元函数的极限运算法则与一元函数类似。变量替换，等价无穷小替换，夹逼定理等方法仍然可以适用。
 	]
-
-	#tip[
-		【确定二重极限不存在的方法】
-
-		找两种特殊的趋近方式，若得到不同的极限，则可断言二重极限 $display(lim_((x,y) -> (x_0,y_0)) f(x,y) = A)$ 不存在。
-	]
 ]
 
 #example[
@@ -131,4 +125,90 @@
 		abs((x^2 y)/(x^2 + y^2)) <= 1/2 abs((x(x^2+y^2))/(x^2+y^2)) = 1/2 abs(x) -> 0 quad ((x,y) -> (0,0))
 		$
 	]
+]
+
+
+#tip[
+	【确定二重极限不存在的方法】
+
+	找两种特殊的趋近方式，若得到不同的极限，则可断言二重极限 $display(lim_((x,y) -> (x_0,y_0)) f(x,y) = A)$ 不存在。
+
+	#example[
+		#problem[
+			考察 $f(x,y)=display((x y)/(x^2+y^2))$ 当 $(x,y)->(0,0)$ 时的极限。
+		]
+
+		#solution[
+			沿 $x$ 轴考察，$display(lim_((x,y)->(0,0)\ y=0) f(x,y) = lim_(x->0) 0/(x^2) = 0)$。而 $display(lim_((x,y)->(0,0)\ y=x) f(x,y) = lim_(x->0) (x^2)/(x^2+x^2) + 1/2 != 0)$。故当 $(x,y)->(0,0)$ 时，$f(x,y)$ 无极限。
+		]
+	]
+]
+
+== 多元函数的连续性
+
+=== 函数的全增量与偏增量
+
+#definition(name: [函数全增量])[
+	设二元函数 $z=f(x,y)$ 在点 $P_0 (x_0,y_0)$ 的某一邻域内有定义。称
+	$
+	Delta = x - x_0,quad Delta y =y - y_0
+	$
+	为 $z=f(x,y)$ 在点 $P_0 (x_0,y_0)$ 处的#def[自变量增量]。称
+	$
+	Delta z = f(x_0+Delta x,y_0+Delta y)-f(x_0,y_0)
+	$
+	为 $z=f(x,y)$ 在点 $P_0 (x_0,y_0)$ 处的#def[全增量]。
+]
+
+#definition(name: [函数偏增量])[
+	设二元函数 $z=f(x,y)$ 在点 $P_0 (x_0,y_0)$ 的某一邻域内有定义。称
+	$
+	f(x_0+Delta x,y_0) - f(x_0,y_0) defeq Delta_x z
+	$
+	为 $z=f(x,y)$ 在点 $P_0(x_0,y_0)$ 处关于 $x$ 的#def[偏增量]。
+]
+
+=== 二元函数函数连续的定义
+
+#definition(name: [二元函数在一点处来连续的定义])[
+	设二元函数 $z=f(x,y)$ 在点 $P_0(x_0,y_0)$ 的某一邻域内有定义。若
+	$ lim_((x,y) -> (x_0,y_0)) f(x,y) = f(x_0,y_0) quad "即" quad lim_(Delta x->0\ Delta y->0) Delta z = 0 $
+	则称 $z=f(x,y)$ 在点 $P_0(x_0,y_0)$ 处#def[连续]。
+]
+
+#definition(name: [二元函数在开区域连续的定义])[
+	设二元函数 $z=f(x,y)$ 在开区域 $D$ 内有定义，若函数 $z=f(x,y)$ 在开区域 $D$ 内每一点都连续，则称 $z=f(x,y)$ 在开区域 $D$ 内#def[连续]。
+]
+
+#definition(name: [二元函数在闭区域连续的定义])[
+	设二元函数 $z=f(x,y)$ 在闭区域 $D$ 上有定义，若
+
+	(1) $forall P_0 (x_0,y_0) in "int" D,space display(lim_(x->x_0\ y->y_0) f(x,y) = f(x_0,y_0))$，即 $z=f(x,y)$ 在 $"int" D$ 内每一点处都连续。
+
+	(2) $forall P_0 (x_0,y_0) in diff D,space display(lim_(x->x_0\ y->y_0\ (x,y) in D) f(x,y) = f(x_0,y_0))$。
+
+	则称 $z=f(x,y)$ 在闭区域 $D$ 上#def[连续]。
+]
+
+=== 有界闭区域上连续函数的性质
+
+#theorem(name: [最大值和最小值定理])[
+	在有界闭区域 $D$ 上的多元连续函数，必定在 $D$ 上有界，且能取得它的最大值和最小值。
+]
+
+#theorem(name: [介值定理])[
+	在有界闭区域 $D$ 上的多元连续函数必取得介于最大值和最小值之间的任何值。
+]
+
+
+
+
+== 偏导数
+
+#definition[
+	设函数 $z=f(x,y)$ 在点 $(x_0,y_0)$ 的某一邻域内有定义，如果极限
+	$
+	lim_(Delta x -> 0) (Delta_x z)/(Delta x) = lim_(x->0) (f(x_0 + Delta x,y_0) - f(x_0,y_0))/(Delta x)
+	$
+	存在，则称此极限为函数 $z=f(x,y)$ 在点 $(x_0,y_0)$ 处对 $x$ 的#def[偏导数]。记作 $f'_x (x_0,y_0), display(lr((diff f)/(diff x)|)_((x_0,y_0)))$ 或 $lr(z'_x|)_((x_0,y_0)), display(lr((diff z)/(diff x)|)_((x_0,y_0)))$。
 ]
