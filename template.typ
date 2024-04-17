@@ -140,7 +140,7 @@
     #hei[定义]#locate(loc => [#counter(heading).at(loc).at(0)]).#definition_counter.display()
   ]
   #if (name != "") [(#kai[#name])]
-  #math.space#it
+  #math.space.thin#it
 ];fake_par}
 
 #let theorem(it, name: "", tag: "定理") = {block(width: 100%)[
@@ -149,7 +149,7 @@
     #hei[#tag]#locate(loc => [#counter(heading).at(loc).at(0).#counter(heading).at(loc).at(1)]).#theorem_counter.display()
   ]
   #if (name != "") [(#kai[#name])]
-  #math.space#it
+  #math.space.thin#it
 ];fake_par}
 #let lemma(it, name: "") = theorem(it, name: name, tag: "引理")
 #let corollary(it, name: "") = theorem(it, name: name, tag: "推论")
@@ -162,11 +162,11 @@
     #hei[例]#problem_counter.display()
   ]
   #if (name != "") [(#kai[#name])]
-  #math.space#it
+  #math.space.thin#it
 ];fake_par}
 #let solution(it, tag: "解") = {block(width: 100%)[
   #strong[#hei[#tag:]]
-  #math.space#it
+  #math.space.thin#it
 ];fake_par}
 
 #let named_block(it, name: "", color: red, inset: 11pt) = {block(

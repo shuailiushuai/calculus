@@ -15,6 +15,7 @@
 )
 
 #let defeq = math.attach("=", t: math.Delta)
+#let atpos(f, b, t) = $lr(display(#f) |)_(#b\ "")^(\ #t)$
 
 = 多元函数微分学
 
@@ -185,7 +186,7 @@
 
 	(1) $forall P_0 (x_0,y_0) in "int" D,space display(lim_(x->x_0\ y->y_0) f(x,y) = f(x_0,y_0))$，即 $z=f(x,y)$ 在 $"int" D$ 内每一点处都连续。
 
-	(2) $forall P_0 (x_0,y_0) in diff D,space display(lim_(x->x_0\ y->y_0\ (x,y) in D) f(x,y) = f(x_0,y_0))$。
+	(2) $forall P_0 (x_0,y_0) in diff D,space display(lim_(space space x->x_0\ space space y->y_0\ (x,y) in D) f(x,y) = f(x_0,y_0))$。
 
 	则称 $z=f(x,y)$ 在闭区域 $D$ 上#def[连续]。
 ]
@@ -210,5 +211,47 @@
 	$
 	lim_(Delta x -> 0) (Delta_x z)/(Delta x) = lim_(x->0) (f(x_0 + Delta x,y_0) - f(x_0,y_0))/(Delta x)
 	$
-	存在，则称此极限为函数 $z=f(x,y)$ 在点 $(x_0,y_0)$ 处对 $x$ 的#def[偏导数]。记作 $f'_x (x_0,y_0), display(lr((diff f)/(diff x)|)_((x_0,y_0)))$ 或 $lr(z'_x|)_((x_0,y_0)), display(lr((diff z)/(diff x)|)_((x_0,y_0)))$。
+	存在，则称此极限为函数 $z=f(x,y)$ 在点 $(x_0,y_0)$ 处对 $x$ 的#def[偏导数]。记作 $f'_x (x_0,y_0), atpos((diff f)/(diff x), (x_0,y_0), "")$ 或 $atpos(z'_x, (x_0,y_0), ""), atpos((diff z)/(diff x), (x_0,y_0), "")$。
+]
+
+#tip[
+	可以适当调换求偏导和代入顺序，来简化运算。
+]
+
+#note[
+	几何意义：由 $f'_x (x_0,y_0) = atpos(dif/(dif x) f(x, y_0), x=x_0, "")$ 知，$f'_x (x_0,y_0)$ 在几何上表示曲线 $display(cases(z=f(x,y),y=y_0))$ 在对应点 $  M_0 (x_0,y_0,f(x_0,y_0))$ 处的切线 $M_0 T_x$ 对 $x$ 轴的斜率（与 $x$ 轴正向夹角的正切）。
+]
+
+#caution[
+	求分界点处的偏导数要用定义求。
+]
+
+== 高阶偏导数
+
+#definition[
+	TBD
+
+	$
+	(diff)/(diff x)((diff z)/(diff x)) = (diff^2 z)/(diff x^2) = f''_(x x)
+	quad quad quad quad quad
+	(diff)/(diff y)((diff z)/(diff y)) = (diff^2 z)/(diff y^2) = f''_(y y)
+	$
+
+	混合偏导数
+
+	$
+	(diff)/(diff y)((diff z)/(diff x)) = (diff^2 z)/(diff x diff y) = f''_(x y)
+	quad quad quad quad quad
+	(diff)/(diff x)((diff z)/(diff y)) = (diff^2 z)/(diff y diff x) = f''_(y x)
+	$
+]
+
+#theorem[
+	若函数 $z=f(x,y)$ 的二阶偏导数 $f''_(x y)(x,y)$ 和 $f''_(y x) (x,y)$ 都在点 $P_0 (x_0,y_0)$ 处连续，则
+	$
+	f''_(x y) (x_0,y_0) = f''_(y x) (x_0,y_0)	
+	$
+	更近一步地，我们有：
+
+	若混合偏导数连续，则混合偏导数与求导顺序无关。
 ]
