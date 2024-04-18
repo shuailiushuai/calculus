@@ -17,6 +17,18 @@
 #let defeq = math.attach("=", t: math.Delta)
 #let atpos(f, b, t) = $lr(display(#f) |)_(#b\ "")^(\ #t)$
 
+#let dx = $dif x$
+#let dy = $dif y$
+#let dz = $dif z$
+#let px = $partial x$
+#let py = $partial y$
+#let pz = $partial z$
+#let pu = $partial u$
+#let pv = $partial v$
+#let ps = $partial s$
+#let pt = $partial t$
+#let pf = $partial f$
+
 = 多元函数微分学
 
 == $n$ 维空间
@@ -254,4 +266,94 @@
 	更近一步地，我们有：
 
 	若混合偏导数连续，则混合偏导数与求导顺序无关。
+]
+
+== 全微分
+
+#definition[
+	若二元函数 $z=f(x,y)$ 在点 $(x,y)$ 处的#def[全增量] $Delta z=f(x+Delta x,y+Delta y)-f(x,y)$ 可以表示为
+	$
+	Delta z = A Delta x + B Delta y + o(rho) quad (rho=sqrt((Delta x)^2 + (Delta y)^2) -> 0)
+	$
+	其中 $A,B$ 与增量 $Delta x,Delta y$ 无关，只与 $x,y$ 有关，则称函数 $f(x,y)$ 在点 $(x,y)$ 处#def[可微]。其中 $A Delta x + B Delta y$ 称为函数 $f(x,y)$ 在点 $(x,y)$ 处的#def[全微分]，记作 $dif z$。
+]
+
+#theorem[
+	若二元函数 $z=f(x,y)$ 在点 $(x,y)$ 处可微，则：
+	
+	(1) $f(x,y)$ 在点 $(x,y)$ 处连续。
+
+	(2) $f(x,y)$ 在点 $(x,y)$ 处的两个偏导数 $f'_x (x,y)$ 和 $f'_y (x,y)$ 都存在，且 $A = f'_x (x,y), B = f'_y (x,y)$。
+]
+
+#theorem(name: [全微分公式])[
+	若二元函数 $z=f(x,y)$ 在区域 $D$ 上的每点 $(x,y)$ 处都可微，则称函数 $f$ 在区域 $D$ 上可微，且 $f$ 在 $D$ 上的全微分为
+	$
+	dif z = f'_x (x,y) dif x + f'_y (x,y) dif y
+	quad "或记" quad
+	dif z = pz/px dif x + pz/py dif y
+	$
+]
+
+#caution[
+	注意 $f'_x (x,y)$ 和 $f'_y (x,y)$ 都存在不能推出函数的全微分存在，需要另验证函数是否可微。如例题中给的例子 $f(x,y) = display(cases(display((2x y)/sqrt(x^2+y^2))\,quad& x^2+y^2!=0, 0\,&x^2+y^2=0))$。
+]
+
+#theorem(name: [可微的充分条件])[
+	若二元函数 $z=f(x,y)$ 的偏导数 $f'_x (x,y)$，$f'_y (x,y)$ 在点 $(x_0,y_0)$ 处连续，则 $z=f(x,y)$ 在点 $(x_0,y_0)$ 处可微。
+]
+
+#tip[
+	【验证多元函数可微的另一种方法】证明多元函数 $z=f(x,y)$ 满足以下性质：
+
+	(1) $f(x,y)$ 在点 $(x,y)$ 处连续。
+
+	(2) $f'_x (x_0,y_0)$ 和 $f'_y (x_0,y_0)$ 都存在。
+
+	(3) $display(lim_(Delta x->0\ Delta y->0) (Delta z - f'_x (x_0,y_0) Delta x - f'_y (x_0,y_0) Delta y)/rho = 0)$，其中 $rho = sqrt(Delta x^2 + Delta y^2)$。
+
+	反过来，可以用这些条件证明多元函数不可微。
+]
+
+== 复合函数的偏导数
+
+#definition[
+	若 $z=f(u,v)$ 而 $u=phi(x,y)$，$v=psi(x,y)$，于是称 $z$ 是 $x$ 与 $y$ 的#def[复合函数]：
+	$
+	z = f(phi(x,y), psi(x,y))
+	$
+]
+
+#theorem(name: [偏导数公式])[
+	若函数 $u=phi(x,y)$，$v=psi(x,y)$ 在点 $(x,y)$ 处的偏导数都存在，$z=f(u,v)$ 在点 $(u,v)=(phi(x,y),psi(x,y))$ 处可微，则复合函数 $z=f(phi(x,y),psi(x,y))$ 在点 $(x,y)$ 处的偏导数存在且
+	$
+	pz/px = pz/pu dot pu/px + pz/pv dot pv/px
+	quad quad
+	px/py = pz/pu dot pu/py + pz/pv dot pv/py
+	$
+]
+
+#definition[
+	若 $z=f(u,v)$，$u=phi(x)$，$v=psi(x)$，则称 $z$ 是一个自变量 $x$ 的复合函数，记 $display((dif z)/(dif x))$ 为#def[全导数]。
+]
+
+#theorem(name: [全导数公式])[
+	若 $z=f(u,v)$，$u=phi(x)$，$v=psi(x)$，则 $z$ 关于 $x$ 的全导数为
+	$
+	dz/dx = pz/pu dot du/dx + pz/pv dot dv/dx
+	$
+]
+
+#theorem(name: [全微分的形式不变性])[
+	设 $z=f(u,v)$，$u=u(x,y)$，$v=v(x,y)$ 都有连续偏导数，则复合函数 $z=f(u(x,y),v(x,y))$ 可微，且有
+	$
+	dif z = pz/pu dot du + pz/pv dot dv
+	$
+
+	#proof[
+		$
+		dz = pz/px dot dx + pz/py dy
+		= (pz/pu pu/px + pz/pv pv/px) dif x + (pz/pu pu/py + pz/pv pv/py) dif y
+		$
+	]
 ]
