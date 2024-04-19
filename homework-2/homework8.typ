@@ -86,6 +86,25 @@ $
 (y-z) pz/px + (y+z) pz/py = 0 <=> u/display(px/pv - px/pu) = 0
 $
 
+#bug[
+	纠错：
+
+	$
+	dif u = dif y - dif z,space dif v = dif y + dif z
+	$
+	$
+	& dif x = px/pu dif u + px/pv dif v = px/pu (dy-dif z) + px/pv (dy+dif z)\
+	==>& (px/pu - px/pv) dif z = - dif x + (px/pu + px/pv) dif y\
+	==>& dif z = 1/display(px/pv - px/pu) + display(px/pu + px/pv)/display(px/pu-px/pv) dif y\
+	==>& pz/px = 1/display(px/pv - px/pu),space pz/py = display(px/pu + px/pv)/display(px/pu-px/pv)
+	$
+	代入得
+	$
+	&u dot 1/display(px/pv - px/pu) + v dot display(px/pu + px/pv)/display(px/pu-px/pv) = 0\
+	==>& px/pu + px/pv = u/v space (v!=0)
+	$
+]
+
 == P90 15
 #prob[
 	引用新的自变量 $xi=x-a t$，$eta = x + a t$ 化简方程。
@@ -98,5 +117,5 @@ $
 pu/px &= pu/(diff xi) (diff xi)/px + pu/(diff eta) (diff eta)/px = pu/(diff xi) + pu/(diff eta)\
 (diff^2 u)/(diff x^2) &= (diff^2 u)/(diff xi^2) (diff xi)/px + (diff^2 u)/(diff xi diff eta) (diff eta)/px + (diff^2 u)/(diff xi diff eta) (diff xi)/px + (diff^2 u)/(diff eta^2) (diff eta)/px = (diff^2 u)/(diff xi diff xi) + 2 (diff^2 u)/(diff xi diff eta) + (diff^2 u)/(diff eta diff eta)\
 pu/(diff t) &= pu/(diff xi) (diff xi)/(diff t) + pu/(diff eta) (diff eta)/(diff t) = -a pu/(diff xi) + a pu/(diff eta)\
-(diff^2 u)/(diff t^2) &= -a (diff^2 u)/(diff xi^2) (diff xi)/px -a (diff^2 u)/(diff xi diff eta) (diff eta)/px + a (diff^2 u)/(diff xi diff eta) (diff xi)/px + a (diff^2 u)/(diff eta^2) (diff eta)/px = a^2 (diff^2 u)/(diff xi diff xi) + 2 a^2 (diff^2 u)/(diff xi diff eta) + a^2 (diff^2 u)/(diff eta diff eta)\
+(diff^2 u)/(diff t^2) &= -a (diff^2 u)/(diff xi^2) (diff xi)/px -a (diff^2 u)/(diff xi diff eta) (diff eta)/px + a (diff^2 u)/(diff xi diff eta) (diff xi)/px + a (diff^2 u)/(diff eta^2) (diff eta)/px = a^2 (diff^2 u)/(diff xi diff xi) - 2 a^2 (diff^2 u)/(diff xi diff eta) + a^2 (diff^2 u)/(diff eta diff eta)\
 $
