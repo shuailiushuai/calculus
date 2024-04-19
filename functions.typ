@@ -45,6 +45,14 @@
 #let dt = math.upright("d") + math.italic("t")
 #let du = math.upright("d") + math.italic("u")
 #let dv = math.upright("d") + math.italic("v")
+#let px = $partial x$
+#let py = $partial y$
+#let pz = $partial z$
+#let pu = $partial u$
+#let pv = $partial v$
+#let ps = $partial s$
+#let pt = $partial t$
+#let pf = $partial f$
 #let Dx = math.Delta + math.italic("x")
 #let Dy = math.Delta + math.italic("y")
 #let Dt = math.Delta + math.italic("t")

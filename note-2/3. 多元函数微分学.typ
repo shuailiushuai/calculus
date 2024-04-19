@@ -17,18 +17,6 @@
 #let defeq = math.attach("=", t: math.Delta)
 #let atpos(f, b, t) = $lr(display(#f) |)_(#b\ "")^(\ #t)$
 
-#let dx = $dif x$
-#let dy = $dif y$
-#let dz = $dif z$
-#let px = $partial x$
-#let py = $partial y$
-#let pz = $partial z$
-#let pu = $partial u$
-#let pv = $partial v$
-#let ps = $partial s$
-#let pt = $partial t$
-#let pf = $partial f$
-
 = 多元函数微分学
 
 == $n$ 维空间
@@ -352,8 +340,11 @@
 
 	#proof[
 		$
-		dz = pz/px dot dx + pz/py dy
-		= (pz/pu pu/px + pz/pv pv/px) dif x + (pz/pu pu/py + pz/pv pv/py) dif y
+		dz
+		&= pz/px dot dx + pz/py dy
+		= (pz/pu pu/px + pz/pv pv/px) dif x + (pz/pu pu/py + pz/pv pv/py) dif y\
+		&= pz/pu (pu/px dx + pu/py dy) + pz/pv (pv/px dx + pv/py dy)
+		= pz/pu du + pz/pv dv
 		$
 	]
 ]
