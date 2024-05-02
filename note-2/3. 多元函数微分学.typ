@@ -328,7 +328,7 @@
 #theorem(name: [全导数公式])[
 	若 $z=f(u,v)$，$u=phi(x)$，$v=psi(x)$，则 $z$ 关于 $x$ 的全导数为
 	$
-	dz/dx = pz/pu dot du/dx + pz/pv dot dv/dx
+	(dif z)/dx = pz/pu dot du/dx + pz/pv dot dv/dx
 	$
 ]
 
@@ -340,11 +340,49 @@
 
 	#proof[
 		$
-		dz
+		dif z
 		&= pz/px dot dx + pz/py dy
 		= (pz/pu pu/px + pz/pv pv/px) dif x + (pz/pu pu/py + pz/pv pv/py) dif y\
 		&= pz/pu (pu/px dx + pu/py dy) + pz/pv (pv/px dx + pv/py dy)
 		= pz/pu du + pz/pv dv
 		$
 	]
+]
+
+== 隐函数的偏导数
+
+=== 一元隐函数的偏导数
+
+#theorem(name: [一元隐函数存在定理])[
+	设函数 $F(x,y)$ 满足：
+
+	(1) $F(x_0,y_0) = 0$；
+
+	(2) 在点 $P(x_0,y_0)$ 的某一邻域内 $F$ 具有连续的偏导数 $F'_x, F'_y$；
+
+	(3) $F'_y (x_0,y_0) != 0$，
+
+	则在点 $P(x_0,y_0)$ 的某一邻域内存在唯一的隐函数 $y=f(x)$，满足 $F(x,y) equiv 0$，且有连续的导数 $display((dif y)/(dif x)=-(F'_x)/(F'_y))$。
+
+	#proof[
+		考虑 $F(x,y(x))=0$，求全导数得 $F'_x + F'_y display((dif y)/(dif x))$，移项解得 $display((dif y)/(dif x) = -(F'_x)/(F'_y))$。
+	]
+
+	#note[
+		第 (2) 和 (3) 条条件可以保证分母不为零。
+	]
+]
+
+=== 二元隐函数的偏导数
+
+#theorem(name: [二元隐函数存在定理])[
+	设函数 $F(x,y,z)$ 满足：
+
+	(1) $F(x_0,y_0,z_0)= 0$；
+
+	(2) 在点 $P(x_0,y_0,z_0)$ 的某一邻域内 $F$ 具有连续的偏导数 $F'_x, F'_y, F'_z$；
+
+	(3) $F'_z (x_0,y_0,z_0) != 0$，
+
+	则在点 $P(x_0,y_0,z_0)$ 的某一邻域内存在唯一的隐函数与 $z=f(x,y)$，满足 $F(x,y,f(x,y))=0$，且有连续的偏导数 $display((diff z)/(diff x) = - (F'_x)/(F'_z)\;quad (diff z)/(diff y) = -(F'_y)/(F'_z))$。
 ]
