@@ -63,3 +63,7 @@
 #let dny = math.attach(math.upright("d"), tr: "n") + math.italic("y")
 
 #let arccot = math.op("arccot")
+
+#let defeq = math.attach("=", t: math.Delta)
+
+#let grad = math.bold(math.upright("grad"))

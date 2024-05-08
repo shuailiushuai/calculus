@@ -14,7 +14,6 @@
 	date: "April 9, 2024",
 )
 
-#let defeq = math.attach("=", t: math.Delta)
 #let atpos(f, b, t) = $lr(display(#f) |)_(#b\ "")^(\ #t)$
 
 = 多元函数微分学
@@ -385,4 +384,146 @@
 	(3) $F'_z (x_0,y_0,z_0) != 0$，
 
 	则在点 $P(x_0,y_0,z_0)$ 的某一邻域内存在唯一的隐函数与 $z=f(x,y)$，满足 $F(x,y,f(x,y))=0$，且有连续的偏导数 $display((diff z)/(diff x) = - (F'_x)/(F'_z)\;quad (diff z)/(diff y) = -(F'_y)/(F'_z))$。
+]
+
+== 场的方向导数与梯度
+
+=== 场的概念
+
+#definition[
+	设空间区域 $V$ 上的每一点 $P$，对应着某个物理量所确定的值，则称空间区域 $V$ 确定了该物理量的#def[场]。如果这个量是数量，则称为#def[数量场]；如果这个量是矢量，则称为#def[矢量场]。
+
+	不随时间的变化二变化的场，称为#def[稳定场]；否则，称为#def[不稳定场]。
+]
+
+#definition[
+	设给定一个数量场 $u=u(P),space P in V$，称具有同函数值 $C$（是一个常数）的点 $P$ 的集合所形成的曲面
+	$
+	{P in V | u(P) = C}
+	$
+	为#def[等值面]。在二维平面中的情况称为#def[等值线]。
+]
+
+=== 数量场的方向导数
+
+#definition[
+	设有数量场 $u=u(P),space P in V$。$P_0 in V$，$l$ 是从 $P_0$ 出发的一条射线。在 $l$ 上任取一点 $P$，$P != P_0$，则 $u(P)$ 在线段 $P_0 P$ 上的平均变化率为
+	$
+	(u(P) - u(P_0))/(abs(P_0 P))
+	$
+	若极限
+	$
+	lim_(P -> P_0) (u(P) - u(P_0))/abs(P_0 P)
+	$
+	存在，则称此极限为数量场 $u(P)$ 在点 $P_0$ 处沿方向 $l$ 的#def[方向导数]，记作 $lr(display((diff u)/(diff bold(l)))|)_(P_0\ )$。
+
+	记 $rho = abs(P_0 P)$。特别地，在二维平面上，设数量场为 $Z=f(x,y),space (x,y) in D,space P_0 (x_0,y_0) in D$，方向 $bold(l) = {cos phi, sin phi},space P(x_0 + Delta x, y_0 + Delta y) in l$，则 $Delta x = rho cos phi, space Delta y = rho sin phi, space rho = sqrt(Delta x ^2 + Delta y^2)$，那么
+	$
+	lr((diff z)/(diff bold(l))|)_(P_0\ ) = lim_(rho -> 0) (f(x_0+rho cos phi, y_0 rho sin phi) - f(x_0, y_0))/rho
+	$
+]
+
+#theorem[
+	若函数 $u=u(x, y ,z)$ 在点 $P_0 (x_0, y_0, z_0)$ 处偏导数连续，则 $u$ 在点 $P_0$ 处沿任一方向 $l$ 的方向导数都存在，且
+	$
+	lr((diff u)/(diff bold(l))|)_(P_0\ ) = lr((diff u)/(diff x)|)_(P_0\ ) cos alpha + lr((diff u)/(diff y)|)_(P_0\ ) cos beta + lr((diff u)/(diff z)|)_(P_0\ ) cos gamma
+	$
+	其中，方向 $l$ 上的单位矢量为
+	$
+	bold(l)^circle.small = {cos alpha, cos beta, cos gamma}
+	$
+]
+
+#note[
+	分区域定义的函数，若在点 $P_0$ 处的偏导数不连续，则可以考虑用定义来讨论方向导数的存在性或计算。
+]
+
+=== 数量场的梯度
+
+若函数 $u=u(x, y, z)$ 在点 $P_0 (x_0, y_0, z_0)$ 处可微，则
+$
+lr((diff u)/(diff bold(l))|)_(P_0\ ) = (lr((diff u)/(diff x)|)_(P_0\ ) bold(i) + lr((diff u)/(diff y)|)_(P_0\ ) bold(j) + lr((diff u)/(diff z)|)_(P_0\ ) bold(k)) dot (cos alpha bold(i) + cos beta bold(j) + cos gamma bold(k)) defeq bold(G) (P_0) dot bold(l)^circle.small = abs(bold(G) (P_0)) cos theta
+$
+
+#definition[
+	称
+	$
+	((diff u)/(diff x) bold(i) + (diff u)/(diff y) bold(j) + (diff u)/(diff z) bold(k)) _(P_0)
+	$
+	为数量场 $u=u(x, y, z)$ 在点 $P_0$ 处的#def[梯度]，记作 $atpos(grad u, P_0, "")$
+]
+
+#theorem[
+	数量场 $u(P)$ 在点 $P_0$ 处沿 $bold(l)$ 方向的方向导数等于梯度在 $bold(l)$ 方向上的_投影_，且方向导数沿梯度方向取得最大值，最大值等于梯度的模。即
+	$
+	atpos((diff u)/(diff bold(l)), P_0, "") = atpos(grad u, P_0, "") dot bold(l)^circle.small
+	;quad quad quad
+	max(atpos((diff u)/(diff bold(l)), P_0, "")) = abs(atpos(grad u, P_0, "")) 
+	$
+]
+
+== 多元函数的极值
+
+#definition[
+	设函数 $z=f(x,y)$ 在点 $(x_0,y_0)$ 的某邻域内有定义。若对于该邻域内任意点 $(x,y)$，都有
+
+	(1) $f(x,y) >= f(x_0,y_0)$，则称 $f(x_0,y_0)$ 为 $f(x,y)$ 的极小值，称 $(x_0,y_0)$ 为 $f(x,y)$ 的极小值点；
+
+	(2) $f(x,y) <= f(x_0,y_0)$，则称 $f(x_0,y_0)$ 为 $f(x,y)$ 的极大值，称 $(x_0,y_0)$ 为 $f(x,y)$ 的极大值点；
+]
+
+=== 极值的必要条件
+
+#theorem[
+	设函数 $z=f(x,y)$ 在点 $(x_0,y_0)$ 具有偏导数，且在点 $(x_0,y_0)$ 处有极值，则它在该点的偏导数必然为零：
+	$
+	f'_x (x_0,y_0) = f'_y (x_0,y_0) = 0
+	$
+	称该点为该函数的 #def[驻点]。
+]
+
+=== 极值的充分条件
+
+#theorem[
+	设函数 $z=f(x,y)$ 在点 $(x_0,y_0)$ 的某邻域内连续，有一阶及二阶连续偏导数。若 $f'_x (x_0,y_0) = 0$，$f'_y (x_0,y_0) = 0$，零 $f''_(x x) (x_0,y_0) = A,space f''_(x y) (x_0,y_0) = B,space f''_(y y) (x_0,y_0) = C$，则 $f(x,y)$ 在点 $(x_0,y_0)$ 处是否取得极值的条件如下：
+
+	(1) $B^2-A C < 0$ 时具有极值，且当 $A<0$ 时有极大值，$A>0$ 时有极小值（可以证明 $A,C$ 同号）；
+
+	(2) $B^2 - A C > 0$ 时没有极值；
+
+	(3) $B^2 - A C = 0$ 时可能有极值，可能没有极值。
+]
+
+#tip[
+	【求多元函数的极值点】
+
+	1. 找出极值的嫌疑点：驻点，不可导点。
+
+	2. 通过极值点的充分条件验证，不能直接验证时用定义或其他方法进行判定。
+]
+
+#tip[
+	【求多元函数的最大值和最小值】
+
+	1. 找出最值的嫌疑点：驻点，不可导点，边界点（只需要算出在边界上的最大值和最小值即可）。
+
+	2. 计算以上诸点处的函数值并作比较，其中最大者即为最大值，最小者即为最小值。
+]
+
+=== 条件极值问题
+
+#theorem(name: [拉格朗日乘数法])[
+	求函数 $z=f(x,y)$ 在约束条件 $phi(x,y)=0$ 下的条件极值，引入拉格朗日函数
+	$
+	F(x,y,lambda) = f(x,y) + lambda phi(x,y)
+	$
+	其中 $lambda$ 为参数。令：
+	$
+	cases(
+		F'_x = f'_x (x,y) + lambda phi'_x (x,y) = 0,
+		F'_y = f'_y (x,y) + lambda phi'_y (x,y) = 0,
+		F'_lambda phi(x,y) = 0
+	)
+	$
+	解出 $x,y,lambda$，其中 $x,y$ 就是可能的极值点的坐标。若这样的点唯一，由实际问题，可直接确定此即所求的点。
 ]
