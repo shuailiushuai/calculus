@@ -216,9 +216,16 @@
 	stroke: 0.5pt,
   width: 100%,
 	align: center + horizon,
-	columns: (1fr)
+	columns: 1
 ) = {
   set table3-global-align(center)
+  if type(columns) == int {
+    let new_columns = ()
+    for i in range(columns) {
+      new_columns.push(1fr)
+    }
+    columns = new_columns
+  }
   box(
     width: width,
     clip: true,

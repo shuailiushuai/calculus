@@ -66,4 +66,9 @@
 
 #let defeq = math.attach("=", t: math.Delta)
 
+#let atpos(f, b, t) = $lr(display(#f) |)_(#b\ "")^(\ #t)$
+
 #let grad = math.bold(math.upright("grad"))
+
+#let deri(x, y) = $display((dif #x)/(dif #y))$
+#let pderi(x, y) = $display((diff #x)/(diff #y))$

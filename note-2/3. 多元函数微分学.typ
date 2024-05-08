@@ -14,8 +14,6 @@
 	date: "April 9, 2024",
 )
 
-#let atpos(f, b, t) = $lr(display(#f) |)_(#b\ "")^(\ #t)$
-
 = 多元函数微分学
 
 == $n$ 维空间
