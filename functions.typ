@@ -42,6 +42,7 @@
 
 #let dx = math.upright("d") + math.italic("x")
 #let dy = math.upright("d") + math.italic("y")
+#let dz = math.upright("d") + math.italic("z")
 #let dt = math.upright("d") + math.italic("t")
 #let du = math.upright("d") + math.italic("u")
 #let dv = math.upright("d") + math.italic("v")
@@ -72,3 +73,22 @@
 
 #let deri(x, y) = $display((dif #x)/(dif #y))$
 #let pderi(x, y) = $display((diff #x)/(diff #y))$
+
+#let int = math.integral
+#let iint = math.integral.double
+#let iiint = math.integral.triple
+#let iiiint = math.integral.quad
+
+#let iintb(x) = [
+	$display(attach(integral.double, b: #x, br: ""))$
+	#set text(size: 0.25em, fill: red.transparentize(100%))
+	#x
+]
+#let iiintb(x) = [
+	$display(attach(integral.triple, b: #x, br: ""))$
+	#set text(size: 0.25em, fill: red.transparentize(100%))
+	#x
+]
+#let iintd = iintb(math.italic("D"))
+#let iints = iintb(math.italic("S"))
+#let iiintv = iiintb(math.italic("V"))
