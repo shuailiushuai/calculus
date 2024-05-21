@@ -525,3 +525,102 @@ $
 	$
 	解出 $x,y,lambda$，其中 $x,y$ 就是可能的极值点的坐标。若这样的点唯一，由实际问题，可直接确定此即所求的点。
 ]
+
+== 偏导数在几何上的应用
+
+#definition(name: [曲线的矢量方程])[
+	设空间曲线的方程 $display(cases(x=x(t),y=y(t),z=z(t))),space t in [alpha,beta]$。若记 $bold(r) = x bold(i) + y bold(j) + z bold(k)$，则曲线的矢量方程为
+	$
+	bold(r) = bold(r) (t) = x(t) bold(i) + y(t) bold(j) + z(t) bold(k) = {x(t), y(t), z(t)}
+	$
+
+	- #[
+		矢值函数的*极限*：
+		$
+		lim_(t->t_0) bold(r) (t) = {lim_(t->t_0) x(t), lim_(t->t_0) y(t), lim_(t->t_0) z(t)}
+		$
+	]
+
+	- #[
+		矢值函数的*连续*：设 $x(t), y(t), z(t)$ 在 $t_0$ 的某邻域内有定义，若
+		$
+		lim_(t->t_0) bold(r)(t) = bold(r)(t_0)
+		$
+		则称矢值函数 $bold(r)=bold(r)(t)$ 在点 $t_0$ 处连续。实际上，$bold(r)(t)$ 在 $t_0$ 处连续当且仅当 $x(t), y(t), z(t)$ 都在 $t_0$ 处连续。
+	]
+
+	- #[
+		矢值函数的*导矢量*：
+		$
+		(dif bold(r))/(dif t) = {x'(t), y'(t), z'(t)}
+		$
+	]
+
+	- #[
+		矢值函数的*矢量微分*：
+		$
+		dif bold(r) = bold(r)'(t) dif t = {x'(t) dif t, y'(t) dif t, z'(t) dif t}
+		$
+	]
+]
+
+=== 空间曲线的切线与法平面
+
+#theorem[
+	设空间曲线 $Gamma$ 的方程为 $display(cases(x=x(t),y=y(t),z=z(t)))$，其中 $x'(t),y'(t),z'(t)$ 连续且不同时为零。设 $P(x_0,y_0,z_0) = P(t_0) in Gamma$。则曲线 $Gamma$ 在点 $P$ 处的切线方程为
+	$
+	(x-x_0)/(x'(t_0)) = (y-y_0)/(y'(t_0)) = (z-z_0)/(z'(t_0))
+	$
+	法平面方程为
+	$
+	x'(t_0) (x-x_0) + y'(t_0) (y-y_0) + z'(t_0) (z-z_0) = 0
+	$
+]
+
+#definition(name: [切矢量])[
+	设空间曲线 $Gamma$ 的方程为 $display(cases(x=x(t),y=y(t),z=z(t)))$，其中 $x'(t),y'(t),z'(t)$ 连续。设 $P(x_0,y_0,z_0) = P(t_0) in Gamma$。则称
+	$
+	bold(T) = {x'(t_0),y'(t_0),z'(t_0)} = atpos({dx/dt,dy/dt,dz/dt}, t=t_0, "")
+	$
+	为曲线 $Gamma$ 在点 $P$ 处的#def[切矢量]
+]
+
+#tip[
+	【求一般式方程表示的空间曲线的切矢量】
+	
+	
+	*法一*：对于用一般式方程表示的曲线，可以采用 $x,y,z$ 中的任意一个作参数来求切矢量，即
+	$
+	bold(T) = {dx/dt,dy/dt,dz/dt}
+	parallel {1, dy/dx, dz/dx}
+	parallel {dx/dy, 1, dz/dy}
+	parallel {dx/dz, dy/dz, 1}
+	parallel {dx, dy, dz}
+	$
+
+	*法二*：先求曲面 $Sigma_1: F(x,y,z)=0$ 和 $Sigma_2: G(x,y,z)$ 各自的切平面，这两切平面的交线即原空间曲线的切线。
+]
+
+=== 曲面的切平面与法线
+
+#definition[
+	设曲面 $Sigma$ 的方程为 $F(x,y,z) = 0$，点 $M(x_0,y_0,z_0) in Sigma$，并设 $F(x,y,z)$ 在点 $M$ 的某邻域内具有连续的偏导数，且不同时为零。则称曲面 $Sigma$ 在点 $M$ 处光滑。
+	
+	因为曲面 $Sigma$ 在点 $M$ 处光滑，所以过 $M$ 可以在曲面 $Sigma$ 上作无数多曲线，这些曲线中的每一条在点 $M$ 处都有一条切线，这些切线所组成的平面称为曲面 $Sigma$ 在点 $M$ 处的#def[切平面]，其方程为
+	$
+	atpos(F'_x, M, "") (x-x_0) + atpos(F'_y, M, "") (y-y_0) + atpos(F'_z, M, "") (z-z_0) = 0
+	$
+
+	#h(indent)通过点 $M$ 而垂直于切平面的直线称曲面在 $M$ 点的#def[法线]，其方程为
+	$
+	(x-x_0)/atpos(F'_x,M,"") = (y-y_0)/atpos(F'_y,M,"") = (z-z_0)/atpos(F'_z,M,"") 
+	$
+]
+
+#theorem(name: [全微分的几何意义])[
+	曲面 $z=f(x,y)$ 在点 $M(x_0,y_0,z_0)$ 处的切平面为
+	$
+	f'_x (x_0,y_0) (x-x_0) + f'_y (x_0,y_0) (y-y_0) = z - z_0
+	$
+	即 $z=f(x,y)$ 在点 $(x_0,y_0)$ 的全微分，表示曲面 $z=f(x,y)$ 在点 $M$ 处的切平面上的点的竖坐标的增量。
+]

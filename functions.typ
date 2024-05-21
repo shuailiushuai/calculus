@@ -62,12 +62,13 @@
 #let ddy = math.attach(math.upright("d"), tr: "2") + math.italic("y")
 #let dddy = math.attach(math.upright("d"), tr: "3") + math.italic("y")
 #let dny = math.attach(math.upright("d"), tr: "n") + math.italic("y")
+#let dsg = math.dif + math.sigma
 
 #let arccot = math.op("arccot")
 
 #let defeq = math.attach("=", t: math.Delta)
 
-#let atpos(f, b, t) = $lr(display(#f) |)_(#b\ "")^(\ #t)$
+#let atpos(f, b, t) = $lr(#v(1.5em)display(#f) |)_(#b\ "")^(\ #t)$
 
 #let grad = math.bold(math.upright("grad"))
 
@@ -91,4 +92,5 @@
 ]
 #let iintd = iintb(math.italic("D"))
 #let iints = iintb(math.italic("S"))
+#let iintsg = iintb(math.sigma)
 #let iiintv = iiintb(math.italic("V"))
