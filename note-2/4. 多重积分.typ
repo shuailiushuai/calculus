@@ -5,7 +5,7 @@
   course_fullname: "Calculus (A) II",
   course_code: "821T0160",
   semester: "Spring-Summer 2024",
-  title: "Note #4: 二重积分",
+  title: "Note #4: 多重积分",
   authors: ((name: "Yulun WU", email: "memset0@outlook.com", id: "3230104585"),),
   date: "April 9, 2024",
 )
@@ -43,7 +43,7 @@
   $iintsg dsg = sigma$
 ]
 
-#theorem(name: [二重积分的线性性质])[
+#property(name: [二重积分的线性性质])[
   $
     iintsg (f(x,y) + g(x,y)) dsg = iintsg f(x,y) dsg + iintsg g(x,y) dsg
   $
@@ -101,3 +101,68 @@
 $
   iintsg f(x,y) dif sigma = iintsg f(x,y) dx dy
 $
+
+#property[
+  设积分区域 $sigma$ 关于 $y$ 轴对称，则
+
+  (1) 若 $f(x,y)$ 关于 $x$ 是奇函数，即 $f(x,y) = -f(-x,y)$，则有 $display(iintb(sigma) f(x,y) dif sigma = 0)$。
+
+  (2) 若 $f(x,y)$ 关于 $x$ 是偶函数，即 $f(x,y) = f(-x,y)$，则有 $display(iintb(sigma) f(x,y) dif sigma = 2 iintb(sigma\,x>=0) f(x,y) dif sigma)$。
+
+  关于 $x$ 轴对称的情形也同理。
+]
+
+== 二重积分在极坐标系中的计算
+
+#note[
+  当被积函数或积分区域的边界曲线方程含有 $x^2+y^2$ 时，常采用极坐标计算二重积分。
+]
+
+令 $display(cases(x = r cos theta, y = r sin theta)) space (0<=r<+oo, 0 <= theta <= 2pi)$，取逆时针为正方向，可将函数转为极坐标下的函数。
+
+#theorem(name: [二重积分在极坐标系中的计算公式])[
+  设 $sigma$ 为 $phi_1 (theta) <= phi_2 (theta), space alpha<=theta<=beta$，则二重积分可写为
+
+  $
+    iintsg f(x,y) dsg
+    = int_alpha^beta dif theta int_(phi_1 (theta))^(phi_2 (theta)) f(r cos theta, r sin theta) dot r dif r
+  $
+]
+
+== 二重积分在一般曲线坐标系中的计算\*
+
+#theorem(name: [二重积分在一般曲线坐标系中的计算公式])[
+  设 $x=x(u,v), y=y(u, v)$，则 $iintsg f(x,y) dsg = iintsg f(x(u,v), y(u, v)) display(abs((diff (x,y))/(diff (u,v)))) dif u dif v$。其中
+  #set math.mat(delim: "|")
+  $
+    (diff (x,y)) / (diff (u,v))
+    = mat(
+      space display((diff x)/(diff u)),
+      quad,
+      display((diff y)/(diff u)) space;
+      space display((diff x)/(diff v)),
+      quad,
+      display((diff y)/(diff v)) space;
+    )
+  $
+]
+
+#corollary(name: [二重积分在广义极坐标系中的计算公式])[
+  设 $x=a r cos theta, y = b r sin theta$，则 $iintsg f(x,y) dsg = iintsg f(a r cos theta, b r sin theta) a b r dif r dif theta$。其中：
+  $
+    r = sqrt((x/a)^2 + (y/b)^2);
+    quad quad quad
+    theta = arctan (a y) / (b x)
+  $
+]
+
+= 三重积分
+
+== 三重积分的概念
+
+#definition[
+  设 $V$ 为空间有界闭区域，$f(x,y,z)$ 为 $V$ 上的有界函数，将 $V$ 任意划分成 $n$ 个小区域：$Delta V_1,Delta V_2,dots.c, Delta V_n$，记 $lambda = display(max_(1<=i<=n)) {Delta V_i "的直径"}$。并任取 $M_i (xi_i,  eta_i, zeta_i) in Delta V_i$，若极限 $display(lim_(lambda -> 0) sum_(i=1)^n f(xi_i, eta_i, zeta_i) Delta V_i)$ 存在，则称此极限为函数 $f(x,y,z)$ 在闭区域 $V$ 上的#def[三重积分]，记作 $iiintv f(x,y,z) dif V$，即
+  $
+  iiintv f(x,y,z) dif V = lim_(lambda->0) sum_(i=1)^n f(xi_i, eta_i, zeta_i) Delta V_i`
+  $
+]
