@@ -80,6 +80,11 @@
 #let iiint = math.integral.triple
 #let iiiint = math.integral.quad
 
+#let intb(x) = [
+	$display(attach(integral, b: #x, br: ""))$
+	#set text(size: 0.25em, fill: red.transparentize(100%))
+	#x
+]
 #let iintb(x) = [
 	$display(attach(integral.double, b: #x, br: ""))$
 	#set text(size: 0.25em, fill: red.transparentize(100%))
@@ -94,3 +99,4 @@
 #let iints = iintb(math.italic("S"))
 #let iintsg = iintb(math.sigma)
 #let iiintv = iiintb(math.italic("V"))
+#let iiintog = iiintb(math.Omega)
