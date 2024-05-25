@@ -16,6 +16,12 @@
   date: "April 9, 2024",
 )
 
+#let iintd = iintb($D$)
+#let iints = iintb($S$)
+#let iintsg = iintb($sigma$)
+#let iiintv = iiintb($V$)
+#let iiintog = iiintb($Omega$)
+
 = 多元函数微分学
 
 == $n$ 维空间

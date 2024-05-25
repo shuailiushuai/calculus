@@ -1,3 +1,5 @@
 *.pdf
 !/slides/*.pdf
 /replay
+/tmp
+/generated

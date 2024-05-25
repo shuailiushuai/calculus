@@ -13,8 +13,14 @@
 #let fake_par = [#text()[#v(0pt, weak: true)];#text()[#h(0em)]]
 
 #let project(
-  course: "", title: "", authors: (), date: none, body,
-  course_fullname: "", semester: "", course_code: "",
+  course: "",
+  title: "",
+  authors: (),
+  date: none,
+  body,
+  course_fullname: "",
+  semester: "",
+  course_code: "",
 ) = {
   if (course_fullname == "") {
     course_fullname = course
@@ -31,42 +37,38 @@
     numbering: "1",
     number-align: center,
   )
-  
+
   // 页眉
-  set page(
-    header: {
-      locate(loc => {
-        if (counter(page).at(loc).at(0) == 1) {
-          return none
-        }
+  set page(header: {
+    locate(loc => {
+      if (counter(page).at(loc).at(0) == 1) {
+        return none
+      }
 
-        set text(font: font_song, 10pt, baseline: 8pt, spacing: 3pt)
+      set text(font: font_song, 10pt, baseline: 8pt, spacing: 3pt)
 
-        grid(
+      grid(
           columns: (1fr, 1fr, 1fr),
           align(left, course),
           []/* align(center, title)*/,
           align(right, date),
         )
-        
-        line(length: 100%, stroke: 0.5pt)
-      })
-    }
-  )
+
+      line(length: 100%, stroke: 0.5pt)
+    })
+  })
 
   // 页脚
-  set page(
-    footer: {
-      set text(font: font_song, 10pt, baseline: 8pt, spacing: 3pt)
-      set align(center)
-      
-      grid(
-        columns: (1fr, 1fr),
-        align(left, authors.map(a => a.name).join(", ")),
-        align(right, counter(page).display("1/1", both: true)),
-      )
-    }
-  )
+  set page(footer: {
+    set text(font: font_song, 10pt, baseline: 8pt, spacing: 3pt)
+    set align(center)
+
+    grid(
+      columns: (1fr, 1fr),
+      align(left, authors.map(a => a.name).join(", ")),
+      align(right, counter(page).display("1/1", both: true)),
+    )
+  })
 
   set text(font: font_song, lang: "zh", size: 12pt)
   show math.equation: set text(weight: 400)
@@ -78,26 +80,32 @@
   set par(leading: 0.75em)
 
   block(
-    below: 4em, stroke: 0.5pt + black, radius: 2pt,
-    width: 100%, inset: 1em, outset: -0.2em
+    below: 4em,
+    stroke: 0.5pt + black,
+    radius: 2pt,
+    width: 100%,
+    inset: 1em,
+    outset: -0.2em,
   )[
     #text(size: 0.84em)[#grid(
-      columns: (auto, 1fr, auto),
-      align(left, strong(course_fullname)),
-      [],
-      align(right, strong(semester)),
-    )]
+        columns: (auto, 1fr, auto),
+        align(left, strong(course_fullname)),
+        [],
+        align(right, strong(semester)),
+      )]
     #v(0.75em)
     #align(center)[#text(size: 1.5em)[#title]]
     #v(0.75em)
-    #block(..authors.map(author => align(center)[
-      #text(size: 0.84em)[#grid(
-        columns: (auto, 1fr, auto),
-        align(left, author.name + " (" + author.id +")"),
-        [],
-        align(right, author.email),
-      )]
-    ]))
+    #block(
+      ..authors.map(author => align(center)[
+        #text(size: 0.84em)[#grid(
+            columns: (auto, 1fr, auto),
+            align(left, author.name + " (" + author.id + ")"),
+            [],
+            align(right, author.email),
+          )]
+      ]),
+    )
   ]
 
   // Main body.
@@ -119,7 +127,13 @@
   ]
 
   set par(first-line-indent: indent)
-  show heading: it => {text()[#v(1.6em, weak: true)];it;fake_par}
+  show heading: it => {
+    text()[#v(1.6em, weak: true)]
+    it
+    fake_par
+  }
+
+  /* { slot: before-body } */
 
   body
 }
@@ -131,49 +145,65 @@
 #let hei(it) = text(it, font: font_hei)
 #let kai(it) = text(it, font: font_kai)
 
-#let bb = (it) => [#strong[#it]]
-#let def = (it) => [#strong[#it]]
+#let bb = it => [#strong[#it]]
+#let def = it => [#strong[#it]]
 
-#let definition(it, name: "") = {block(width: 100%)[
-  #definition_counter.update(x => (x + 1))
-  #strong[
-    #hei[定义]#locate(loc => [#counter(heading).at(loc).at(0)]).#definition_counter.display()
+#let definition(it, name: "") = {
+  block(width: 100%)[
+    #definition_counter.update(x => (x + 1))
+    #strong[
+      #hei[定义]#locate(loc => [#counter(heading).at(loc).at(0)]).#definition_counter.display()
+    ]
+    #if (name != "") [(#kai[#name])]
+    #math.space.thin#it
   ]
-  #if (name != "") [(#kai[#name])]
-  #math.space.thin#it
-];fake_par}
+  fake_par
+}
 
-#let theorem(it, name: "", tag: "定理") = {block(width: 100%)[
-  #theorem_counter.update(x => (x + 1))
-  #strong[
-    #hei[#tag]#locate(loc => [#counter(heading).at(loc).at(0).#counter(heading).at(loc).at(1)]).#theorem_counter.display()
+#let theorem(it, name: "", tag: "定理") = {
+  block(width: 100%)[
+    #theorem_counter.update(x => (x + 1))
+    #strong[
+      #hei[#tag]#locate(loc => [#counter(heading).at(loc).at(0).#counter(heading).at(loc).at(1)]).#theorem_counter.display()
+    ]
+    #if (name != "") [(#kai[#name])]
+    #math.space.thin#it
   ]
-  #if (name != "") [(#kai[#name])]
-  #math.space.thin#it
-];fake_par}
+  fake_par
+}
 #let lemma(it, name: "") = theorem(it, name: name, tag: "引理")
 #let corollary(it, name: "") = theorem(it, name: name, tag: "推论")
 #let property(it, name: "") = theorem(it, name: name, tag: "性质")
 #let conclusion(it, name: "") = theorem(it, name: name, tag: "结论")
 
-#let problem(it, name: "") = {block(width: 100%)[
-  #problem_counter.update(x => (x + 1))
-  #strong[
-    #hei[例]#problem_counter.display()
+#let problem(it, name: "") = {
+  block(width: 100%)[
+    #problem_counter.update(x => (x + 1))
+    #strong[
+      #hei[例]#problem_counter.display()
+    ]
+    #if (name != "") [(#kai[#name])]
+    #math.space.thin#it
   ]
-  #if (name != "") [(#kai[#name])]
-  #math.space.thin#it
-];fake_par}
-#let solution(it, tag: "解") = {block(width: 100%)[
-  #strong[#hei[#tag:]]
-  #math.space.thin#it
-];fake_par}
+  fake_par
+}
+#let solution(it, tag: "解") = {
+  block(width: 100%)[
+    #strong[#hei[#tag:]]
+    #math.space.thin#it
+  ]
+  fake_par
+}
 
-#let named_block(it, name: "", color: red, inset: 11pt) = {block(
-  below: 1em, stroke: 0.5pt + color, radius: 3pt,
-  width: 100%, inset: inset
-)[
-  #place(
+#let named_block(it, name: "", color: red, inset: 11pt) = {
+  block(
+    below: 1em,
+    stroke: 0.5pt + color,
+    radius: 3pt,
+    width: 100%,
+    inset: inset,
+  )[
+    #place(
     top + left,
     dy: -6pt - inset, // Account for inset of block
     dx: 8pt - inset,
@@ -182,11 +212,13 @@
 			#strong[#name]
 		]
   )
-  #let fontcolor = color.darken(0%)
-  #set text(fill: fontcolor)
-  #set par(first-line-indent: 0em)
-  #it
-];fake_par}
+    #let fontcolor = color.darken(0%)
+    #set text(fill: fontcolor)
+    #set par(first-line-indent: 0em)
+    #it
+  ]
+  fake_par
+}
 
 #let example(it) = named_block(it, name: "Example", color: gray.darken(60%))
 #let proof(it) = named_block(it, name: "Proof", color: rgb(120, 120, 120))
@@ -211,12 +243,12 @@
 
 #let table3-global-align = align
 #let table3(
-	..args,
-	inset: 0.5em,
-	stroke: 0.5pt,
+  ..args,
+  inset: 0.5em,
+  stroke: 0.5pt,
   width: 100%,
-	align: center + horizon,
-	columns: 1
+  align: center + horizon,
+  columns: 1,
 ) = {
   set table3-global-align(center)
   if type(columns) == int {
@@ -247,7 +279,7 @@
         },
         auto-vlines: false,
       ),
-      line(stroke: (stroke * 2) + black, length: 100%)
-    )
+      line(stroke: (stroke * 2) + black, length: 100%),
+    ),
   )
 }

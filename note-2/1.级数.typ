@@ -28,17 +28,17 @@
 = 数项级数
 
 #definition[
-  给定数列 ${a_n}$，将其每一项依次用“$+$”号连接起来的表达式 $a_1 + a_2 + dots.c + a_n + dots.c = ss a_n$ 称为#bb[无穷级数]。
+  给定数列 ${a_n}$，将其每一项依次用“$+$”号连接起来的表达式 $a_1 + a_2 + dots.c + a_n + dots.c = ss a_n$ 称为#def[无穷级数]。
 ]
 
 #definition[
-  在级数 $ss a_n$ 中，前 $n$ 项的和 $display(S_n = a_1 + a_2 + dots.c + a_n)$ 称为它的第 $n$ 个#bb[部分和]。所得到的数列 ${S_n}$ 称为#bb[部分和数列]。
+  在级数 $ss a_n$ 中，前 $n$ 项的和 $display(S_n = a_1 + a_2 + dots.c + a_n)$ 称为它的第 $n$ 个#def[部分和]。所得到的数列 ${S_n}$ 称为#def[部分和数列]。
 ]
 
 == 级数收敛的定义与判别
 
 #definition[
-  对于级数 $ss a_n$，若它的部分和数列 ${S_n}$ 收敛，则称该无穷级数#bb[收敛]。且称 $S=display(lim_(n->oo) S_n = S)$ 为该级数的#bb[和]；若数列 ${S_n}$ 发散，则称该无穷级数#bb[发散]。
+  对于级数 $ss a_n$，若它的部分和数列 ${S_n}$ 收敛，则称该无穷级数#def[收敛]。且称 $S=display(lim_(n->oo) S_n = S)$ 为该级数的#def[和]；若数列 ${S_n}$ 发散，则称该无穷级数#def[发散]。
 ]
 
 #theorem(name: "柯西收敛准则")[
@@ -106,7 +106,7 @@
 == 正项级数
 
 #definition[
-  若级数 $ss a_n$ 中的各项均有 $a_n>0$，则该级数为#bb[正项级数]。
+  若级数 $ss a_n$ 中的各项均有 $a_n>0$，则该级数为#def[正项级数]。
 ]
 
 #theorem(name: "正项级数收敛的充要条件")[
@@ -172,7 +172,7 @@
 \
 
 #property[
-  通常称 $sss display(1/(n^p))$ 为 #bb[$p$-级数]。当 $p<=1$ 时，$p$-级数发散；当 $p>1$ 时，$p$-级数收敛。
+  通常称 $sss display(1/(n^p))$ 为 #def[$p$-级数]。当 $p<=1$ 时，$p$-级数发散；当 $p>1$ 时，$p$-级数收敛。
 
   #proof[
     当 $p<=1$ 时，$display(1/(n^p)>=1/n)$，而调和级数发散，因此当 $p<=1$ 时，级数 $sss display(1/(n^p))$ 发散。
@@ -224,7 +224,7 @@
 === 交错级数与莱布尼茨判别法
 
 #definition[
-  若 $a_n>0 sp(n=1,2,dots.c)$，则称 $ss (-1)^(n-1) a_n$ 为#bb[交错级数]。
+  若 $a_n>0 sp(n=1,2,dots.c)$，则称 $ss (-1)^(n-1) a_n$ 为#def[交错级数]。
 ]
 
 #theorem(name: "莱布尼茨判别法")[
@@ -263,7 +263,7 @@
 === 利用级数绝对收敛的性质
 
 #definition[
-  若级数 $ss |a_n|$ 收敛，则称级数 $ss a_n$ #bb[绝对收敛]，若级数 $ss a_n$ 收敛而级数 $ss |a_n|$ 发散，则称级数 $ss a_n$ #bb[条件收敛]。
+  若级数 $ss |a_n|$ 收敛，则称级数 $ss a_n$ #def[绝对收敛]，若级数 $ss a_n$ 收敛而级数 $ss |a_n|$ 发散，则称级数 $ss a_n$ #def[条件收敛]。
 ]
 
 #theorem(name: "级数的绝对收敛准则")[
@@ -394,21 +394,21 @@
 #definition[
   设 $u_1(x),u_2(x),dots.c,u_n(x),dots.c$ 是定义在 $I in RR$ 上的函数，则
   $ ss u_n(x) = u_1(x)+u_2(x)+dots.c+u_n(x) + dots.c $
-  称为定义在区间 $I$ 上的#bb[函数项级数]。
+  称为定义在区间 $I$ 上的#def[函数项级数]。
 ]
 
 #definition[
-  如果 $x_0 in I$，数项级数 $ss u_n(x_0)$ 收敛，则称 $x_0$ 为级数 $ss u_n(x)$ 的#bb[收敛点]，否则称为#bb[发散点]。
+  如果 $x_0 in I$，数项级数 $ss u_n(x_0)$ 收敛，则称 $x_0$ 为级数 $ss u_n(x)$ 的#def[收敛点]，否则称为#def[发散点]。
 ]
 
 #definition[
-  函数项级数 $ss u_n(x)$ 的所有收敛点的全体称为#bb[收敛域]，所有发散点的全体称为#bb[发散域]。
+  函数项级数 $ss u_n(x)$ 的所有收敛点的全体称为#def[收敛域]，所有发散点的全体称为#def[发散域]。
 ]
 
 #definition[
   称
   $ S_n = u_1(x) + u_2(x) + dots.c + u_n(x) $
-  为函数项级数 $ss u_n(x)$ 的（第 $n$ 个）#bb[部分和函数]。若 $dp(lim_(n->+oo) S_n(x) = S(x))$，则称 $S(x)$ 为函数项技术 $ss u(x)$ 的#bb[和函数]。
+  为函数项级数 $ss u_n(x)$ 的（第 $n$ 个）#def[部分和函数]。若 $dp(lim_(n->+oo) S_n(x) = S(x))$，则称 $S(x)$ 为函数项技术 $ss u(x)$ 的#def[和函数]。
 ]
 
 #note[
@@ -420,7 +420,7 @@
 #definition[
   称函数项级数
   $ a_0+a_1 (x-x_0)+dots.c+a_n (x-x_0)^n +dots.c = ssf(0) a_n (x-x_0)^n $
-  为关于 $x-x_0$ 的#bb[幂级数]，其中 $a_n$ 称为#bb[幂级数系数]。
+  为关于 $x-x_0$ 的#def[幂级数]，其中 $a_n$ 称为#def[幂级数系数]。
 
   特别地，取 $x_0=0$，称
   $ a_0 +a_1 x + dots.c + a_n x^n = ssf(0) a_n x^n $
@@ -453,7 +453,7 @@
 可以发现，幂级数 $ss a_n x^n$ 的收敛域是一个以 $x=0$ 为中心的区间。
 
 #definition[
-  设幂级数 $ss a_n x^n$ 的收敛域的长度为 $2R$，则称 $R$ 为幂级数 $ss a_n x^n$ 的#bb[收敛半径]，称 $(-R,R)$ 为该幂级数的#bb[收敛区间]。
+  设幂级数 $ss a_n x^n$ 的收敛域的长度为 $2R$，则称 $R$ 为幂级数 $ss a_n x^n$ 的#def[收敛半径]，称 $(-R,R)$ 为该幂级数的#def[收敛区间]。
 ]
 
 #theorem[

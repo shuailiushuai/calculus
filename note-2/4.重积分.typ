@@ -10,6 +10,12 @@
   date: "April 9, 2024",
 )
 
+#let iintd = iintb($D$)
+#let iints = iintb($S$)
+#let iintsg = iintb($sigma$)
+#let iiintv = iiintb($V$)
+#let iiintog = iiintb($Omega$)
+
 = 二重积分
 
 == 二重积分的概念
@@ -163,6 +169,6 @@ $
 #definition[
   设 $V$ 为空间有界闭区域，$f(x,y,z)$ 为 $V$ 上的有界函数，将 $V$ 任意划分成 $n$ 个小区域：$Delta V_1,Delta V_2,dots.c, Delta V_n$，记 $lambda = display(max_(1<=i<=n)) {Delta V_i "的直径"}$。并任取 $M_i (xi_i,  eta_i, zeta_i) in Delta V_i$，若极限 $display(lim_(lambda -> 0) sum_(i=1)^n f(xi_i, eta_i, zeta_i) Delta V_i)$ 存在，则称此极限为函数 $f(x,y,z)$ 在闭区域 $V$ 上的#def[三重积分]，记作 $iiintv f(x,y,z) dif V$，即
   $
-  iiintv f(x,y,z) dif V = lim_(lambda->0) sum_(i=1)^n f(xi_i, eta_i, zeta_i) Delta V_i`
+    iiintv f(x,y,z) dif V = lim_(lambda->0) sum_(i=1)^n f(xi_i, eta_i, zeta_i) Delta V_i`
   $
 ]

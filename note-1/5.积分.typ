@@ -1,20 +1,25 @@
 #import "../template.typ": *
 
 #show: project.with(
-	course: "Calculus I",
-	course_fullname: "Calculus (A) I",
-	course_code: "821T0150",
-	semester: "Autumn-Winter 2023",
+  course: "Calculus I",
+  course_fullname: "Calculus (A) I",
+  course_code: "821T0150",
+  semester: "Autumn-Winter 2023",
   title: "Calculus Note #4",
-  authors: ((
-    name: "memset0",
-    email: "memset0@outlook.com",
-    id: "3230104585"
-  ),),
+  authors: (
+    (
+      name: "memset0",
+      email: "memset0@outlook.com",
+      id: "3230104585",
+    ),
+  ),
   date: "December 10, 2023",
 )
 
-#let int = math.integral
+#set par(first-line-indent: 0em)
+#let def(x) = text("【" + x + "】", weight: "bold")
+#let deft(x) = text("【" + x + "】", weight: "bold", fill: rgb("#FFFFFF"))
+
 #let defas = sp + math.attach(math.upright("="), tl: "", t: "def", tr: "") + sp
 
 = 不定积分
@@ -29,7 +34,7 @@
   注意 $alpha!=-1$ 的限制，否则应为下一种情况．
 ]
 
-3. $int 1/x dx = ln |x| + C$
+3. $int 1 / x dx = ln |x| + C$
 
 #warning[
   注意到 $display((ln(-x))' = ((-x)')/(-x) = -1/(-x) = 1/x)$，所以此处应有绝对值．
@@ -63,7 +68,7 @@
   这一部分来源于三角函数的微分公式．
 ]
 
-16. $int tan x dx  = - ln |cos x| + C$
+16. $int tan x dx = - ln |cos x| + C$
 
 17. $int cot x dx = ln |sin x| + C$
 
@@ -76,19 +81,19 @@
 
   #def[解法一]
   $
-  int sec x dx
-  &= int (cos x)/(cos^2 x) dx
-  = int (dif sin x)/(1-sin^2 x)
-  = 1/2 int (1/(1+sin x) + 1/(1-sin x)) dif sin x\
-  &= 1/2 ln(ln|1 + sin x| - ln|1 - sin x|) + C
-  = 1/2 ln |(1+sin x)/(1-sin x)| + C
+    int sec x dx
+    &= int (cos x) / (cos^2 x) dx
+    = int (dif sin x) / (1-sin^2 x)
+    = 1 / 2 int (1 / (1+sin x) + 1 / (1-sin x)) dif sin x\
+    &= 1 / 2 ln(ln|1 + sin x| - ln|1 - sin x|) + C
+    = 1 / 2 ln |(1+sin x) / (1-sin x)| + C
   $
   #def[解法二]
   $
-  int sec x dx
-  = int (sec x (sec x + tan x))/(sec x + tan x) dx
-  = int (sec^2 x + sec x tan x)/(sec x + tan x) dx
-  = ln |sec x + tan x| + C
+    int sec x dx
+    = int (sec x (sec x + tan x)) / (sec x + tan x) dx
+    = int (sec^2 x + sec x tan x) / (sec x + tan x) dx
+    = ln |sec x + tan x| + C
   $
 ]
 
@@ -107,7 +112,7 @@
 #def[推论1]若函数 $f_1 (x),f_2 (x),dots.c,f_m (x)$ 的原函数存在，$k_1,k_2,dots.c,k_m$ 均不为 $0$ 且是常数，那么
 
 $
-int sum_(i=0)^m k_i f_i (x) dx = sum_(i=1)^m k_i int f_i (x) dx
+  int sum_(i=0)^m k_i f_i (x) dx = sum_(i=1)^m k_i int f_i (x) dx
 $
 
 这又被称为不定积分的 *线性运算法则*．
@@ -128,10 +133,10 @@ $
 
 #proof[
   $
-  int sec^6 x dx
-  &= int (tan^2 x + 1)^2 sec^2 x dx
-  = int (tan^4 x + 2 tan^2 x + 1)^2 dif(tan x)\
-  &= 1/5 tan^5 x + 2/3 tan^3 x + tan x + C
+    int sec^6 x dx
+    &= int (tan^2 x + 1)^2 sec^2 x dx
+    = int (tan^4 x + 2 tan^2 x + 1)^2 dif(tan x)\
+    &= 1 / 5 tan^5 x + 2 / 3 tan^3 x + tan x + C
   $
 ]
 
@@ -139,7 +144,7 @@ $
 
 1. 万能凑幂法：$display(cases(
     display(int f(x^n) x^(n-1) dx = 1/n int f(x^n) dif x^n),
-    display(int f(x^n) 1/x dx = 1/n int f(x^n) 1/(x^n) dif x^n), 
+    display(int f(x^n) 1/x dx = 1/n int f(x^n) 1/(x^n) dif x^n),
   ))$．
 
 2. 对分母因式分解后化成多个小分式分别处理．
@@ -148,10 +153,10 @@ $
 
 #proof[
   $
-  int (dx)/(x^2+a^2)
-  = 1/(a^2) int (dx)/((x/a)^2 + 1)
-  = 1/a int (dif(x/a))/((x/a)^2 + 1)
-  = 1/a arctan(x/a) + C
+    int (dx) / (x^2+a^2)
+    = 1 / (a^2) int (dx) / ((x / a)^2 + 1)
+    = 1 / a int (dif(x/a)) / ((x / a)^2 + 1)
+    = 1 / a arctan(x/a) + C
   $
 ]
 
@@ -159,10 +164,10 @@ $
 
 #proof[
   $
-  int (dx)/(x^2-a^2)
-  &= int 1/(2a) ((x+a) - (x-a))/((x+a)(x-a)) dx
-  = 1/(2a) (int (dif(x-a))/(x-a) - int (dif(x+a))/(x+a))\
-  &= 1/(2a) (ln|x-a| - ln|x+a|) + C
+    int (dx) / (x^2-a^2)
+    &= int 1 / (2a) ((x+a) - (x-a)) / ((x+a)(x-a)) dx
+    = 1 / (2a) (int (dif(x-a)) / (x-a) - int (dif(x+a)) / (x+a))\
+    &= 1 / (2a) (ln|x-a| - ln|x+a|) + C
   $
 ]
 
@@ -172,23 +177,21 @@ $
 
 1. $sqrt(a^2 - x^2) => "令 " x = a cos t$，$sqrt(x^2 + a^2) => "令 " x = a tan t$，$sqrt(x^2 - a^2) => "令 " x = a csc t$．可以脱去根号．
 
-
-
 #def[例4]求：$int sqrt(a^2 - x^2) dx sp (a>0)$．
 
 #proof[
   令 $display(x = a sin t\,sp t in (-pi/2,pi/2))$，则
   $
-  sqrt(a^2 - x^2) = sqrt(a^2 - a^2 sin^2 t) = a cos t
-  quad quad 
-  dx = a cos t dt
+    sqrt(a^2 - x^2) = sqrt(a^2 - a^2 sin^2 t) = a cos t
+    quad quad
+    dx = a cos t dt
   $
   $
-  => "原式"
-  &= int a cos t a cos t dt 
-  = a^2 int cos^2 t dt
-  = a^2 (t/2 + (sin 2t)/4) + C\
-  &= a^2/2 arcsin x/a + 1/2 x sqrt(a^2 - x^2) + C\
+    => "原式"
+    &= int a cos t a cos t dt
+    = a^2 int cos^2 t dt
+    = a^2 (t / 2 + (sin 2t) / 4) + C\
+    &= a^2 / 2 arcsin x / a + 1 / 2 x sqrt(a^2 - x^2) + C\
   $
 ]
 
@@ -197,17 +200,17 @@ $
 #proof[
   令 $display(x = a tan t\,sp t in (-pi/2,pi/2))$，则
   $
-  sqrt(x^2 + a^2) = sqrt(a^2 tan^23 t + a^2) = a sec t
-  quad quad quad
-  dx = a sec^2 t dt
+    sqrt(x^2 + a^2) = sqrt(a^2 tan^23 t + a^2) = a sec t
+    quad quad quad
+    dx = a sec^2 t dt
   $
   $
-  => "原式"
-  &= int (a sec^2 t)/(a sec t) dt
-  = int sec t dt
-  = ln |sec + tan t| + C_1\
-  &= ln |(sqrt(x^2 + a^2) + x)/a| + C_1
-  = ln (x + sqrt(x^2 + a^2)) + C quad (C = C_1 - ln a)
+    => "原式"
+    &= int (a sec^2 t) / (a sec t) dt
+    = int sec t dt
+    = ln |sec + tan t| + C_1\
+    &= ln |(sqrt(x^2 + a^2) + x) / a| + C_1
+    = ln (x + sqrt(x^2 + a^2)) + C quad (C = C_1 - ln a)
   $
 ]
 
@@ -216,24 +219,24 @@ $
 #proof[
   当 $x>a$ 时，令 $x = a sec t,sp t in display((0, pi/2))$，则
   $
-  sqrt(x^2 - a^2) = sqrt(a^2 sec^2 t - a^2) = a tan t
-  quad quad quad
-  dx = a sec t tan t dt
+    sqrt(x^2 - a^2) = sqrt(a^2 sec^2 t - a^2) = a tan t
+    quad quad quad
+    dx = a sec t tan t dt
   $
   $
-  => "原式"
-  = int (a sec t tan t)/(a tan t) dt 
-  = int sec t dt
-  = ln |sec t + tan t| + C_1
-  = ln |x + sqrt(x^2 - a^2)| + C
+    => "原式"
+    = int (a sec t tan t) / (a tan t) dt
+    = int sec t dt
+    = ln |sec t + tan t| + C_1
+    = ln |x + sqrt(x^2 - a^2)| + C
   $
   当 $x< -a$ 时，令 $x = -u$，则
   $
-  "原式"
-  &= - int du/sqrt(u^2 - a^2)
-  = - ln |-x + sqrt(x^2 - a^2)| + C
-  = - ln |(a^2)/(-x - sqrt(x^2 - a^2))| + C\
-  &= ln |x + sqrt(x^2 - a^2)| + C
+    "原式"
+    &= - int du / sqrt(u^2 - a^2)
+    = - ln |-x + sqrt(x^2 - a^2)| + C
+    = - ln |(a^2) / (-x - sqrt(x^2 - a^2))| + C\
+    &= ln |x + sqrt(x^2 - a^2)| + C
   $
   综上，$display(int dx / sqrt(x^2 - a^2)) = ln |x + sqrt(x^2 - a^2)| + C sp (a>0)$．
 ]
@@ -241,21 +244,21 @@ $
 === 分部积分法
 
 $
-int u dif v = u v - int v dif u
+  int u dif v = u v - int v dif u
 $
 
 #def[例7]求：$int sqrt(x^2 + a^2) dx sp (a>0)$．
 
 #proof[
   $
-  int sqrt(x^2 + a^2) dx
-  &= x sqrt(x^2 + a^2) - int (x^2)/sqrt(x^2 + a^2) dx
-  = x sqrt(x^2 + a^2) - int ((x^2 + a^2) - a^2)/sqrt(x^2 + a^2) dx\
-  &= x sqrt(x^2 + a^2) - int sqrt(x^2 + a^2) dx + a^2 int dx/sqrt(x^2 + a^2)
+    int sqrt(x^2 + a^2) dx
+    &= x sqrt(x^2 + a^2) - int (x^2) / sqrt(x^2 + a^2) dx
+    = x sqrt(x^2 + a^2) - int ((x^2 + a^2) - a^2) / sqrt(x^2 + a^2) dx\
+    &= x sqrt(x^2 + a^2) - int sqrt(x^2 + a^2) dx + a^2 int dx / sqrt(x^2 + a^2)
   $
   $
-  => int sqrt(x^2 + a^2) dx
-  = 1/2 x sqrt(x^2 + a^2) + (a^2)/2 ln (x+sqrt(x^2 + a^2)) + C
+    => int sqrt(x^2 + a^2) dx
+    = 1 / 2 x sqrt(x^2 + a^2) + (a^2) / 2 ln (x+sqrt(x^2 + a^2)) + C
   $
 ]
 
@@ -276,11 +279,11 @@ $
 === 有理函数的不定积分
 
 $
-R(x) = (P(x))/(Q(x)) = (a_0 x^n + a_1 x^(n-1) + dots.c + a_n)/(b_0 x^m + b_1 x^(m-1) + dots.c + b_m)
+  R(x) = (P(x)) / (Q(x)) = (a_0 x^n + a_1 x^(n-1) + dots.c + a_n) / (b_0 x^m + b_1 x^(m-1) + dots.c + b_m)
 $
 当 $m<=n$ 时，$R(x)$ 为假分式；当 $m>n$ 时 $R(x)$ 为真分式．
 $
-"有理函数" = "多项式" + "真分式"
+  "有理函数" = "多项式" + "真分式"
 $
 
 = 定积分
@@ -289,11 +292,11 @@ $
 
 若存在一常数 $I$，任给 $epsilon > 0$，存在 $delta > 0$，使得对任意的分割
 $
-T:sp a = x_0<x_1<x_2< dots.c < x_(i-1)<x_i<x_(i+1) < dots.c < x_n=b
+  T:sp a = x_0<x_1<x_2< dots.c < x_(i-1)<x_i<x_(i+1) < dots.c < x_n=b
 $
 只要 $max{Delta x_i:1<=i<=n} = lambda(T) < delta$，任给 $xi_i in [x_(i-1), x_i]$，都有
 $
-|sum_(i=1)^n f(xi_i) Delta x_i - I| < eps
+  |sum_(i=1)^n f(xi_i) Delta x_i - I| < eps
 $
 成立，则称 $I$ 为 $f(x)$ 在区间 $[a,b]$ 上的定积分．
 
@@ -333,14 +336,14 @@ $ int_a^b f(x) dx = f(xi) (b-a) $
 #proof[
   设 $display(M = max_([a,b]) f(x)\,sp m = min_([a,b]) f(x))$，由性质 4 可得：
   $
-  m <= 1/(b-a) int_a^b f(x) dx <= M
+    m <= 1 / (b-a) int_a^b f(x) dx <= M
   $
   根据闭区间上的连续函数介值定理，至少存在一点 $xi in [a,b]$ 使 $display(f(xi) = 1/(b-a) int_a^b f(x) dx)$．
 ]
 
 #def[推论4]（推广的定积分中值定理）设 $f(x),g(x)$ 在 $[a,b]$ 上连续，且 $g(x)$ 在 $[a,b]$ 上不变号，则至少存在一点 $xi in [a,b]$ 使得
 $
-int_a^b f(x) g(x) dx = f(xi) int_a^b g(x) dx
+  int_a^b f(x) g(x) dx = f(xi) int_a^b g(x) dx
 $
 
 == 积分上限函数
@@ -356,7 +359,7 @@ $
 
 设 $F(x)$ 是连续函数 $f(x)$ 在 $[a,b]$ 上的原函数，则
 $
-int_a^b f(x) dx = F(b) - F(a)
+  int_a^b f(x) dx = F(b) - F(a)
 $
 
 == 定积分的计算方法
@@ -368,14 +371,14 @@ $
 2. 在 $[alpha,beta] sp ("或 " [beta,alpha])$ 上有连续的导数 $psi'(t)$．
 则有定积分换元公式：
 $
-int_a^b f(x) dx = int_alpha^beta f(psi(t)) psi'(t) dt
+  int_a^b f(x) dx = int_alpha^beta f(psi(t)) psi'(t) dt
 $
 
 === 分部积分法
 
 若 $u=u(x),v=v(x)$ 在 $[a,b]$ 上具有连续的导函数，则
 $
-int_a^b u dv = u v |_a^b - int_a^b v du
+  int_a^b u dv = u v |_a^b - int_a^b v du
 $
 
 == 几种简化的定积分计算方法
@@ -384,9 +387,9 @@ $
 
 若 $f(x)$ 在区间 $[-a,a]$ 上来连续，则：
 $
-int_(-a)^a f(x) dx
-= int_0^a (f(x) + f(-x)) dx
-= cases(
+  int_(-a)^a f(x) dx
+  = int_0^a (f(x) + f(-x)) dx
+  = cases(
   0\,quad& "当 " f(x) "为奇函数",
   2 int_0^a f(x) dx\,quad& "当 " f(x) "为偶函数",
 )\
@@ -396,16 +399,16 @@ $
 
 设 $f(x)$ 是周期为 $T$ 的周期函数，且连续，则
 $
-int_a^(a+T) f(x) dx = int_0^T dx quad (a "是任意常数")
+  int_a^(a+T) f(x) dx = int_0^T dx quad (a "是任意常数")
 $
 
 === $sin^n x,sp cos^n x$ 在 $[0,pi/2]$ 上的积分
 
 （Wallis 公式）对任意的自然数 $n sp (n>=2)$，有
 $
-int_0^(pi/2) sin^n x dx
-= int_0^(pi/2) cos^n x dx
-= cases(
+  int_0^(pi / 2) sin^n x dx
+  = int_0^(pi / 2) cos^n x dx
+  = cases(
   display((n-1)/n dot (n-3)/(n-2) dots.c 1/2 dot pi/2 \,quad& 2 divides n),
   display((n-1)/n dot (n-3)/(n-2) dots.c 2/3 \,quad& 2 divides.not n),
 )
@@ -417,14 +420,14 @@ $
 === 第一类反常积分（无穷区间上的反常积分）
 
 $
-int_a^(+oo) f(x) dx defas lim_(t->+oo) int_a^t f(x) dx\
-int_(-oo)^b f(x) dx defas lim_(t->-oo) int_t^b f(x) dx\
+  int_a^(+oo) f(x) dx defas lim_(t->+oo) int_a^t f(x) dx\
+  int_(-oo)^b f(x) dx defas lim_(t->-oo) int_t^b f(x) dx\
 $
 若右式的极限存在，则称该反常积分收敛，否则称该反常积分发散．
 
 进一步地，有
 $
-int_(-oo)^(+oo) f(x) dx defas int_a^(+oo) f(x) dx + int_(-oo)^a f(x) dx
+  int_(-oo)^(+oo) f(x) dx defas int_a^(+oo) f(x) dx + int_(-oo)^a f(x) dx
 $
 称反常积分 $display(int_(-oo)^(+oo) f(x) dx)$ 收敛当且仅当右侧两个反常积分都收敛，否则称其发散．
 
@@ -432,21 +435,21 @@ $
 
 当 $p!=1$ 时，有
 $
-int_a^(+oo) dx/(x^p)
-= lim_(t->+oo) int_a^t dx/(x^p)
-= lim_(t->+oo) lr((x^(-p+1))/(-p+1)|)_a^t
-= lim_(t->+oo) 1/(1-p) (t^(-p+1) - a^(-p+1))
-= cases(
+  int_a^(+oo) dx / (x^p)
+  = lim_(t->+oo) int_a^t dx / (x^p)
+  = lim_(t->+oo) lr((x^(-p+1))/(-p+1)|)_a^t
+  = lim_(t->+oo) 1 / (1-p) (t^(-p+1) - a^(-p+1))
+  = cases(
   display((a^(1-p))/(p-1)\,quad& p>1),
   display(+oo\,quad& p<1)
 )
 $
 当 $p=1$ 时，有
 $
-int_a^(+oo) dx/x
-= lim_(t->+oo) int_a^t dx/x
-= lim_(t->+oo) lr(ln x |)_a^t
-= +oo
+  int_a^(+oo) dx / x
+  = lim_(t->+oo) int_a^t dx / x
+  = lim_(t->+oo) lr(ln x |)_a^t
+  = +oo
 $
 综上，反常积分 $display(int_a^(+oo) (dx)/(x^p))$，当 $p>1$ 时收敛，当 $p<=1$ 时发散．
 
@@ -454,18 +457,18 @@ $
 
 设函数 $f(x)$ 在区间 $(a,b]$ 上连续，$display(lim_(x->a^+) f(x) = oo)$（称 $a$ 为瑕点）．于是任给 $0<epsilon<b-a$，$display(int_(a+epsilon)^b f(x) dx)$ 均存在，它是关于 $epsilon$ 的函数，则定义
 $
-int_a^b f(x) dx defas lim_(epsilon -> 0^+) int_(a+epsilon)^b f(x) dx
+  int_a^b f(x) dx defas lim_(epsilon -> 0^+) int_(a+epsilon)^b f(x) dx
 $
 
 类似的，设函数 $f(x)$ 在区间 $[a,b)$ 上连续，$display(lim_(x->b^-) f(x) = oo)$（称 $b$ 为瑕点），则定义
 $
-int_a^b f(x) dx defas lim_(epsilon->0^+) int_a^(b-epsilon) f(x) dx
+  int_a^b f(x) dx defas lim_(epsilon->0^+) int_a^(b-epsilon) f(x) dx
 $
 这两个反常积分收敛都是当且仅当右式的极限存在．
 
 进一步地，设函数 $f(x)$ 在区间 $[a,c) union (c,b]$ 上连续，$lim_(x->c) f(x) = oo$（称 $c$ 为瑕点），则定义
 $
-int_a^b f(x) dx defas int_a^c f(x) dx + int_c^b f(x) dx
+  int_a^b f(x) dx defas int_a^c f(x) dx + int_c^b f(x) dx
 $
 该反常积分收敛当且仅当右侧两个反常积分都收敛，否则发散．
 
@@ -473,22 +476,22 @@ $
 
 $x=b$ 是瑕点，当 $p!=1$ 时，有
 $
-int_a^b dx/((b-x)^p)
-&= lim_(epsilon->0^+) int_a^(b-epsilon) dx/((b-x)^p)
-= lim_(epsilon->0^+) lr(-(b-x)^(-p+1)/(-p+1)|)_a^(b-epsilon)
-= lim_(epsilon->0^+) ((b-a)^(1-p)-epsilon^(1-p))/(1-p)\
-&= cases(
+  int_a^b dx / ((b-x)^p)
+  &= lim_(epsilon->0^+) int_a^(b-epsilon) dx / ((b-x)^p)
+  = lim_(epsilon->0^+) lr(-(b-x)^(-p+1)/(-p+1)|)_a^(b-epsilon)
+  = lim_(epsilon->0^+) ((b-a)^(1-p)-epsilon^(1-p)) / (1-p)\
+  &= cases(
   ((b-a)^(1-p))/(1-p) \,quad& p<1,
   +oo \,quad& p>1
 )
 $
 当 $p=1$ 时，有
 $
-int_a^b dx/(b-x)
-&= lim_(epsilon->0^+) int_a^(b-epsilon) dx/(b-x)
-= - lim_(epsilon->0^+) lr((ln|b-x|)|)_a^(b-epsilon)
-= lim_(epsilon->0^+) (ln(b-a)-ln(epsilon))
-= +oo
+  int_a^b dx / (b-x)
+  &= lim_(epsilon->0^+) int_a^(b-epsilon) dx / (b-x)
+  = - lim_(epsilon->0^+) lr((ln|b-x|)|)_a^(b-epsilon)
+  = lim_(epsilon->0^+) (ln(b-a)-ln(epsilon))
+  = +oo
 $
 综上，反常积分 $display(int_a^b dx/((b-x)^p))$，当 $p<1$ 时收敛，当 $p>=1$ 时发散．
 
@@ -533,14 +536,14 @@ $
 #proof[
   #def[证明]（这里只证明第1条）由于 $display(lim_(x->+oo)) x^p f(x) = A$，所以对 $epsilon=display(A/2)>0$，存在 $b>0$ 使得当 $x>b$ 时有 $display(-A/2 < x^p f(x) - A < A/2)$ 或
   $
-  0<A/2 dot 1/(x^p) < f(x) < (3A)/2 dot 1/(x^p)
+    0<A / 2 dot 1 / (x^p) < f(x) < (3A) / 2 dot 1 / (x^p)
   $
   由推论1.1.1知当 $p>1$ 时 $display(int_a^(+oo) f(x) dx)$ 收敛；当 $p<=1$ 时 $display(int_a^(+oo) f(x) dx)$ 发散．
 ]
 
 #note[
   这条结论告诉我们，可以不讨论 $f(x)$ 和 $display(c/(x^p))$ 的大小关系，只需要找到 $p$ 使得 $f(x)$ 和 $display(A/(x^p))$ 同阶即可．
-  
+
   在实际应用中，首先看能否找到当 $x->+oo$ 时，$f(x)$ 的等价量 $display(A/(x^p))$，如果找不到，再考虑第2条或第3条．
 ]
 
@@ -557,7 +560,7 @@ $
 == $Gamma$ 函数
 
 $
-Gamma(s) = int_0^(+oo) x^(s-1) e^(-x) dx sp (s>0)
+  Gamma(s) = int_0^(+oo) x^(s-1) e^(-x) dx sp (s>0)
 $
 
 #def[性质] $Gamma(s+1) = s Gamma(s) sp (s>0)$．所以说，$Gamma$ 函数是阶乘的自然推广．
@@ -565,19 +568,19 @@ $
 === $Gamma$ 函数的敛散性判别
 
 $
-Gamma(s) = int_0^(+oo) x^(s-1) e^(-x) dx = int_0^1 x^(s-1) e^(-x) dx + int_1^(+oo) x^(s-1) e^(-x) dx = I_1 + I_2
+  Gamma(s) = int_0^(+oo) x^(s-1) e^(-x) dx = int_0^1 x^(s-1) e^(-x) dx + int_1^(+oo) x^(s-1) e^(-x) dx = I_1 + I_2
 $
 其中 $I_1$ 是第二类反常积分，$x=0$ 是瑕点，考虑到
 $
-x^(s-1) e^(-x) sim 1/(x^(1-s)) quad (x->0^+)
+  x^(s-1) e^(-x) sim 1 / (x^(1-s)) quad (x->0^+)
 $
 且 $A=1$，故当 $1-s<1$ 即 $s>0$ 时 $I_1$ 收敛．
 
 $I_2$ 是第一类反常积分
 $
-lim_(x->+oo) x^2 x^(s-1) e^(-x)
-= lim_(x->+oo) (x^(s+1))/(e^(-x))
-= 0
+  lim_(x->+oo) x^2 x^(s-1) e^(-x)
+  = lim_(x->+oo) (x^(s+1)) / (e^(-x))
+  = 0
 $
 故 $I_2$ 总是收敛．综上所述，当 $s>0$ 时，$I = Gamma(s)$ 收敛．
 

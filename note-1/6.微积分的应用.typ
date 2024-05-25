@@ -1,20 +1,23 @@
 #import "../template.typ": *
 
 #show: project.with(
-	course: "Calculus I",
-	course_fullname: "Calculus (A) I",
-	course_code: "821T0150",
-	semester: "Autumn-Winter 2023",
+  course: "Calculus I",
+  course_fullname: "Calculus (A) I",
+  course_code: "821T0150",
+  semester: "Autumn-Winter 2023",
   title: "Note #5 微积分的应用",
-  authors: ((
-    name: "memset0",
-    email: "memset0@outlook.com",
-    id: "3230104585"
-  ),),
+  authors: (
+    (
+      name: "memset0",
+      email: "memset0@outlook.com",
+      id: "3230104585",
+    ),
+  ),
   date: "January 7, 2024",
 )
 
-#let int = math.integral
+#let def(x) = text("【" + x + "】", weight: "bold")
+#let deft(x) = text("【" + x + "】", weight: "bold", fill: rgb("#FFFFFF"))
 
 = 微积分在几何中的应用
 
@@ -54,7 +57,7 @@
 #theorem[
   当曲线方程由参数方程 $display(cases(x=phi(t),y=psi(t)))$ 给出时，面积公式可修改为
   $
-  A = int_a^b psi(t) dif (phi(t)) = int_(t_1)^(t_2) psi(t) phi'(t) dt
+    A = int_a^b psi(t) dif (phi(t)) = int_(t_1)^(t_2) psi(t) phi'(t) dt
   $
   这里 $a=phi(t_1)$，$b=phi(t_2)$。
 ]
@@ -62,7 +65,7 @@
 #theorem[
   设 $phi(theta) in C[alpha,beta],sp phi(theta)>=0$ 与射线 $theta=alpha,sp theta=beta$ 围成的面积 $A$，则在 $[alpha,beta]$ 上任取小区间 $[theta,dif theta]$ 将其近似为三角形可得
   $
-  dif A= 1/2 phi^2(theta) dif theta sp ==> sp A = 1/2 int_alpha^beta phi^2(theta) dif theta
+    dif A= 1 / 2 phi^2(theta) dif theta sp ==> sp A = 1 / 2 int_alpha^beta phi^2(theta) dif theta
   $
 ]
 
@@ -83,27 +86,27 @@
 #theorem[
   曲线 $y=f(x) sp (a<=x<=b)$ 的弧长为
   $
-  dif s = sqrt((dx)^2 + (dy)^2) = sqrt(1+y'^2) dx
-  sp ==> sp s=int_a^b sqrt(1+f'^2(x)) dx
+    dif s = sqrt((dx)^2 + (dy)^2) = sqrt(1+y'^2) dx
+    sp ==> sp s=int_a^b sqrt(1+f'^2(x)) dx
   $
 ]
 
 #theorem[
   曲线 $display(cases(x=phi(t),y=psi(t))) sp (alpha<=t<=beta)$ 的弧长为
   $
-  dif s = sqrt((dx)^2 + (dy)^2) = sqrt(phi'^2(t) + psi'^2(t)) dt
-  sp ==> sp s=int_alpha^beta sqrt(phi'^2(t) + psi'^2(t)) dt 
+    dif s = sqrt((dx)^2 + (dy)^2) = sqrt(phi'^2(t) + psi'^2(t)) dt
+    sp ==> sp s=int_alpha^beta sqrt(phi'^2(t) + psi'^2(t)) dt
   $
 ]
 
 #theorem[
   曲线 $r=r(theta) sp (alpha<=theta<=beta)$（令 $x(theta)=r(theta)cos theta,sp y(theta)=r(theta)sin theta$）的弧长为
   $
-  dif s
-  =sqrt((x'(theta))^2 + (y'(theta))^2) dif theta
-  =sqrt(r^2(theta) + r'^2(theta)) dif theta
-  sp==> sp s
-  =int_alpha^beta sqrt(r^2(theta) + r'^2(theta)) dif theta
+    dif s
+    =sqrt((x'(theta))^2 + (y'(theta))^2) dif theta
+    =sqrt(r^2(theta) + r'^2(theta)) dif theta
+    sp==> sp s
+    =int_alpha^beta sqrt(r^2(theta) + r'^2(theta)) dif theta
   $
 ]
 
@@ -112,14 +115,14 @@
 #theorem[
   连续曲线段 $y=f(x) sp (a<=x<=b)$ 绕 $x$ 轴一圈围成的立体体积为：
   $
-  V_x = int_a^b pi f^2(x) dx
+    V_x = int_a^b pi f^2(x) dx
   $
 ]
 
 #theorem(name: "柱壳法")[
   平面图形 $D:sp 0<=y<=f(x),sp a<=x<=b$ 绕 $y$ 轴形成的旋转体的体积为：
   $
-  V_y = 2 pi int_a^b x f(x) dx
+    V_y = 2 pi int_a^b x f(x) dx
   $
 ]
 
@@ -128,8 +131,8 @@
 #theorem[
   连续曲线段 $y=f(x)$ 且 $f(x)>=0$ 绕 $x$ 旋转一周所得到的旋转体表面积为：
   $
-  dif S = 2 pi y dif s
-  sp ==> sp
-  S = 2 pi int_a^b f(x) sqrt(1 + f'^2(x)) dx
+    dif S = 2 pi y dif s
+    sp ==> sp
+    S = 2 pi int_a^b f(x) sqrt(1 + f'^2(x)) dx
   $
 ]

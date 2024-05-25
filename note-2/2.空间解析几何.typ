@@ -572,7 +572,7 @@ TBD
   二次曲线 $display(z=-x^2/a^2+y^2/b^2)$ 所表示的二次曲面称为#def[双曲抛物面]。
 ]
 
-== 旋转变换$""^*$
+== 旋转变换\*
 
 #definition[
   #set math.mat(delim: "(")
