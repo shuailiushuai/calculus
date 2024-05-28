@@ -77,6 +77,7 @@
 #let iint = $integral.double$
 #let iiint = $integral.triple$
 #let iiiint = $integral.quad$
+#let intc = $integral.cont$
 
 #let intb(x) = [
   $display(attach(integral, b: #x, br: ""))$
@@ -90,6 +91,11 @@
 ]
 #let iiintb(x) = [
   $display(attach(integral.triple, b: #x, br: ""))$
+  #set text(size: 0.25em, fill: red.transparentize(100%))
+  #x
+]
+#let intcb(x) = [
+  $display(attach(integral.cont, b: #x, br: ""))$
   #set text(size: 0.25em, fill: red.transparentize(100%))
   #x
 ]

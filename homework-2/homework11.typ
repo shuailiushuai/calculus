@@ -16,6 +16,12 @@
   date: "May 7th, 2024",
 )
 
+#let iintd = iintb($D$)
+#let iints = iintb($S$)
+#let iintsg = iintb($sigma$)
+#let iiintv = iiintb($V$)
+#let iiintog = iiintb($Omega$)
+
 = 习题9-3
 == P171 2(2)
 #prob[
@@ -59,7 +65,7 @@ $
 $
   iiintb(Omega) (x+z) dif V
   = iiintb(Omega) z dif V
-  = int_0^(2 pi) dif theta int_0^(pi/4) dif psi int_0^1 r cos psi dot r^2 sin psi dif r = pi/8
+  = int_0^(2 pi) dif theta int_0^(pi / 4) dif psi int_0^1 r cos psi dot r^2 sin psi dif r = pi / 8
 $
 
 == P172 3
@@ -116,8 +122,8 @@ $
 $
 用球面坐标公式代换得
 $
-I =  int_0^(2 pi) dif theta int_0^(pi) dif psi int_0^R r^4 sin psi dif r
-= 4/5 pi R^5
+  I = int_0^(2 pi) dif theta int_0^(pi) dif psi int_0^R r^4 sin psi dif r
+  = 4 / 5 pi R^5
 $
 
 = 习题9-4
