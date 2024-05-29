@@ -4,7 +4,7 @@
   course: "Calculus II",
   course_fullname: "Calculus (A) II",
   course_code: "821T0160",
-  title: "Homework #12: 第一类曲线积分 & 第二类曲线积分",
+  title: "Homework #12: 第一类曲面积分 & 第二类曲线积分",
   authors: (
     (
       name: "Yulun WU",
@@ -78,8 +78,25 @@ $
 
 == P178 4
 #prob[
-  求抛物面壳 $display(z = 1/2 (x^2 + y^2) space (0<=z<=1))$ 的质量此壳的密度按规律 $rho = z$ 而变化。
+  求抛物面壳 $display(z = 1/2 (x^2 + y^2) space (0<=z<=1))$ 的质量。此壳的密度按规律 $rho = z$ 而变化。
 ]
+$
+  M
+  = iints dif M
+  = iints z dif V
+  = iintsg (x^2+y^2) / 2 sqrt(1+x^2+y^2) dif sigma
+$
+其中，$sigma: x^2+y^2<=2$。作极坐标代换：
+$
+  x = r cos theta; quad y = r sin theta quad (0<=theta<=2 pi,space 0<=r<=sqrt(2))
+$
+得
+$
+  M
+  &= int_0^(2pi) dif theta int_0^sqrt(2) r^2 / 2 sqrt(1+r^2) dot r dif r\
+  &= 2 pi dot (6 sqrt(3) + 1) / 15
+  = (12 sqrt(3) + 2) / 15 pi
+$
 
 = 习题10-1
 == P212 1(1)
@@ -173,13 +190,23 @@ $
 $
 作极坐标代换
 $
-  x = a / 2 + a / 2 cos t; quad y = a / 2 sin t;
+  x = a / 2 + a / 2 cos theta; quad y = a / 2 sin theta;
 $
 $
   z
-  &= sqrt(a^2 - x^2 - y^2)l
-  = a / 2 sqrt(4 - (1 + cos t)^2 - sin^2 t)
-  = a / 2 sqrt(2 - 2 cos t) \
-  &= a / 2 sqrt(2 (1 - 1 + 2 sin^2 t/2 ))
-  = a sin t / 2
+  &= sqrt(a^2 - x^2 - y^2)
+  = a / 2 sqrt(4 - (1 + cos theta)^2 - sin^2 theta)
+  = a / 2 sqrt(2 - 2 cos theta) \
+  &= a / 2 sqrt(2 (1 - 1 + 2 sin^2 theta/2 ))
+  = a sin theta / 2
+$
+
+故
+
+$
+  & intb(C) (y^2 - z^2) dx + (z^2 - x^2) dy + (x^2 - y^2) dz\
+  =& int_0^(2pi) ((a / 2 sin theta)^2 - (a sin theta / 2)^2) (-a / 2 sin theta) dif theta\
+  & quad quad + int_0^(2pi) ((a sin theta / 2)^2 - (a / 2 + a / 2 cos theta)^2) (a / 2 cos theta) dif theta\
+  & quad quad + int_0^(2pi) ((a / 2 + a / 2 cos theta)^2 - (a / 2 sin theta)^2) (a / 2 cos theta / 2) dif theta\
+  =& -pi / 4 a^3
 $
