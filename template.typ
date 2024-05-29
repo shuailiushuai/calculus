@@ -138,8 +138,6 @@
   body
 }
 
-#import "./functions.typ": *
-
 #let song(it) = text(it, font: font_song)
 #let fangsong(it) = text(it, font: font_fangsong)
 #let hei(it) = text(it, font: font_hei)
@@ -241,6 +239,8 @@
 #let quote(it) = named_block(it, name: "Quote", color: rgb(132, 90, 231))
 #let cite(it) = named_block(it, name: "Cite", color: rgb(132, 90, 231))
 
+#let correction(it) = named_block(it, name: "Correction", color: rgb(216, 58, 49))
+
 #let table3-global-align = align
 #let table3(
   ..args,
@@ -283,3 +283,5 @@
     ),
   )
 }
+
+#import "./functions.typ": *
