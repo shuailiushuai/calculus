@@ -31,6 +31,29 @@
 
 == 第一类曲线积分的计算
 
+=== ?
+
+#theorem[
+  若曲面 $S$ 为光滑曲面，$z=z(x,y)$，$(x,y) in sigma_(x y)$（$sigma_(x y)$ 是曲面 $S$ 在 $O x y$ 平面上的投影），则
+  $
+    iintb(S) f(x,y,z) dif S = iintb(sigma_(x y)) f(x,y,z(x,y)) sqrt(1+z'_x^2+z'_y^2) dif sigma
+  $
+
+  还可以投影到平面 $O x z$、$O y z$ 上，得到两个形式相似的式子。
+
+  #proof[
+    由于 $dif S$ 很小，可以把 $dif S$ 看做一个平面，则平面 $dif S$ 与平面 $sigma_(x y)$（也就是 $O x y$）的夹角 $theta$（取锐角）的余弦为
+    $
+      cos theta = 1 / sqrt(z'_x^2 + z'_y^2 + 1)
+    $
+    将 $dif S$ 与 $dif sigma_(x y)$ 分别积分（具体过程略）可以得到 $cos theta dif S = dif sigma$，代入可得证。
+  ]
+]
+
+= 第一类曲面积分
+
+== 第一类曲面积分的概念
+
 = 第二类曲线积分
 
 == 第二类曲线积分的概念
@@ -44,3 +67,7 @@
 ]
 
 == 第二类曲线积分的计算
+
+= 第二类曲面积分
+
+== 第二类曲面积分的概念
