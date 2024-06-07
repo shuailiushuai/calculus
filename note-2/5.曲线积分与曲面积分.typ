@@ -54,8 +54,40 @@
 
 == 第一类曲面积分的概念
 
+#definition[
+  设 $S$ 是空间中的一张有界光滑曲面，$f(x,y,z)$ 为定义在 $S$ 上的有界函数。将 $S$ 分成互不相交的 $n$ 个小块 $Delta S_1,Delta S_2,dots.c,Delta S_n$，$Delta S_i$ 的面积仍旧用 $Delta S_i$ 来表示，记 $lambda= max_(1<=i<=n) {Delta S_i "的直径"}$。$forall P_i (xi_i,eta_i,zeta_i) in Delta S_i$，若极限
+  $
+    lim_(lambda->0) sum_(i=1)^n f(xi_i,eta_i,zeta_i) Delta S_i
+  $
+  存在，且极限值与区域 $S$ 的分割方法及 $P_i$ 的取法无关，则称上述极限为函数 $f(x,y,z)$ 在 $S$ 上的第一类曲面积分，记作
+  $
+    iintb(S) f(x,y,z) dif S
+  $
+]
 
-== 第一类曲面积分的计算
+== 第一类曲面积分的计算：微元法
+
+投影到 $x O y$ 平面：$forall dif S subset  S$，$forall P(x,y,z(x,y)) in dif S$，设 $dif sigma$ 为 $dif S$ 在 $x O y$ 平面上的投影，则曲面 $S$ 在该点处的法矢量为
+$
+  arrow(n) = pm {(diff z) / (diff x),(diff z) / (diff y),-1}
+$
+则 $arrow(n)$ 与 $z$ 轴正向夹角 $gamma$ 的余弦为：
+$
+  cos gamma = pm 1 / display(sqrt(1+((diff z)/(diff x))^2+((diff z)/(diff y))^2))
+$
+则
+$
+  dif sigma = dif S dot.c abs(cos gamma) = sqrt(1+((diff z)/(diff x))^2 + ((diff z)/(diff y))^2) dif sigma
+$
+
+#theorem[
+  设 $f(x,y,z)$ 在曲面 $S$ 上连续，若 $S:z=z(x,y),space (x,y) in sigma_(x y)$，则
+  $
+    iintb(S) f(x,y,z) dif S
+    = iintb(sigma_(x y)) f(x,y,z(x,y)) sqrt(1+((diff z)/(diff x))^2+((diff z)/(diff y))^2) dif sigma
+  $
+  同理，可以得到投影到 $y O z$ 平面和 $x O z$ 平面的类似结论。
+]
 
 = 第二类曲线积分
 
