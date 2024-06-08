@@ -91,9 +91,7 @@ $
   同理，可以得到投影到 $y O z$ 平面和 $x O z$ 平面的类似结论。
 ]
 
-= 点函数积分
-
-== 点函数积分的概念
+== 点函数积分
 
 #definition[
   设 $Omega$ 为有界形体，$partial Omega$ 为 $Omega$ 的边界。若 $partial Omega subset Omega$，则称 $Omega$ 是#def[闭形体]。
@@ -114,7 +112,9 @@ $
   $
 ]
 
-== 点函数积分的分类
+\
+
+我们学过的点函数积分有以下五种：
 
 1. #[
     一元函数定积分：设 $Omega = [a,b] subset RR^1$，$f(P) = f(x), space x in [a,b]$，则
@@ -216,6 +216,16 @@ $
   $
 ]
 
+#tip[
+  【求力场 $arrow(F)$ 对运动质点所作的功 $W$】
+
+  1. 利用 $arrow(F) = abs(F) arrow(F^circle.small)$，求出 $arrow(F) = P arrow(i) + Q arrow(j) + R arrow(k)$。
+
+  2. 求出质点运动路径 $Gamma_(A B)$ 的参数方程。
+
+  3. 写出功 $W$ 的积分表达式 $display(W = int_(Gamma_(A B)) P dx + Q dy + R dz)$ 并计算。
+]
+
 == 格林公式
 
 #theorem[
@@ -273,6 +283,139 @@ $
   ]
 ]
 
+== 平面曲线积分与路径的无关性
+
 = 第二类曲面积分
 
 == 第二类曲面积分的概念
+
+= ?
+
+== Stocks 公式
+
+#theorem[
+  设函数 $P(x,y,z)$，$Q(x,y,z)$，$R(x,y,z)$ 及其一阶偏导数在空间区域 $Omega$ 上连续，$S$ 是 $Omega$ 内的一张光滑曲面，曲面 $S$ 的边界曲线 $L$ 是分段光滑的连续曲线，$S$ 的法线方向与 $L$ 的方向符合右手法则（即人在 $S$ 的正侧沿 $L$ 行走时，$S$ 总位于他的左边），则
+  #set math.mat(delim: "|")
+  $
+    intcb(L) P dx + Q dy + R dz
+    =& iintb(S) ((diff R) / (diff y) - (diff Q) / (diff z)) dy dz
+    + ((diff P) / (diff z) - (diff R) / (diff x)) dz dx
+    + ((diff Q) / (diff x) - (diff P) / (diff y)) dx dy\
+    =& iintb(S) mat(
+      dy dz, dz dx, dx dy;
+      display(diff/(diff x)), display(diff/(diff y)), display(diff/(diff z));
+      P, Q, R)
+    = iintb(S) mat(
+      cos alpha, cos beta, cos gamma;
+      display(diff/(diff x)), display(diff/(diff y)), display(diff/(diff z));
+      P, Q, R) dif S
+  $
+  #set math.mat(delim: "(")
+
+  #note[
+    Stokes 公式中的曲面 $S$ 是以 $L$ 为边界的有侧光滑曲面。左端的积分值与以 $L$ 为边界的光滑曲面 $S$ 的形状无关。因此在计算中，可以选择最简单的曲面来求积分。
+  ]
+]
+
+== 空间曲线积分与路径无关性
+
+#definition(name: [空间线(面)单连通区域])[
+  区域 $V$ 称为#def[线(面)单连通区域]，如果 $V$ 内任一封闭曲线(面)可以不经过 $V$ 以外的店而连续收缩于 $V$ 中的一点。
+
+  #note[
+    也就是说这一空间线(面)的内部没有洞，否则选上这个洞的空间线(面)就不可能连续收缩于一点。
+  ]
+]
+
+#theorem[
+  设 $V$ 是一个空间线单连通区域，若函数 $P(x,y,z)$，$Q(x,y,z)$，$R(x,y,z)$ 在区域 $V$ 上连续，且具有连续的一阶偏导数，则以下四个条件等价：
+
+  (1) 对 $V$ 内任一分段光滑的封闭曲线 $L$，有 $display(intc_L P dx + Q dy + R dz) = 0$。
+
+  (2) 对 $V$ 内任一分段光滑曲线 $Gamma_(A B)$，$display(int_(Gamma_(A B)) P dx + Q dy + R dz)$ 与路径 $Gamma$ 无关，只与起点 $A$ 和终点 $B$ 的位置有关。
+
+  (3) 存在 $u(x,y,z),space (x,y,z) in V$，使 $du = P dx + Q dy + R dz$。这时，我们称 $u(x,y,z)$ 为 $P dx + Q dy + R dz$ 的一个原函数。
+
+  (4) $display((diff P)/(diff y) = (diff Q)/(diff x))$，$display((diff Q)/(diff z) = (diff R)/(diff y))$，$display((diff R)/(diff x) = (diff P)/(diff z))$，$forall (x,y,z) in V$。
+
+  #tip[
+    【原函数的求法】
+
+    既然曲线积分与路径 $Gamma$ 无关，只与起点 $A(x_0,y_0,z_0)$ 和终点 $B(x,y,z)$ 的位置有关，我们不妨设其沿着一条最简单的路径运动。
+
+    $
+      u(x,y,z) =& int_((x_0,y_0,z_0))^((x,y,z)) P(x,y,z) dx + Q(x,y,z) dy + R(x,y,z) dz + C\
+      =& int_((x_0,y_0,z_0))^((x,y_0,z_0)) + int_((x_0,y_0,z_0))^((x,y,z_0)) + int_((x_0,y_0,z_0))^((x,y,z)) + C\
+      =& int_(x_0)^x P(x,y_0,z_0) dx + int_(y_0)^y Q(x,y,z_0) dy + int_(z_0)^z R(x,y,z) dz + C
+    $
+  ]
+]
+
+== 曲线积分的牛莱公式
+
+#theorem[
+  若 $du (x,y,z) = P dx + Q dy + R dz$，则
+  $
+    int_(Gamma_(A B)) P dx + Q dy + R dz
+    =& int_A^B P dx + Q dy + R dz
+    = int_A^B du (x,y,z)
+    = atpos(u(x,y,z), A, B)
+    = u(B) - u(A)
+  $
+]
+
+== 矢量场的旋度
+
+#definition(name: [矢量场的循环量、环量])[
+  在矢量场 $arrow(A) (M)$ 中，矢量 $arrow(A) (M)$ 沿有向封闭曲线 $L$ 的曲线积分 $display(intc_L arrow(A) dot dif arrow(l))$ 称为矢量场 $arrow(A) (M)$ 沿封闭曲线 $L$ 的#def[循环量]。
+]
+
+#definition(name: [平均循环量、平均环量密度])[
+  设 $L$ 是所围的曲面为 $S$，其面积也记为 $S$，且 $L$ 的方向与 $S$ 的法矢量 $arrow(n)$ 的方向符合右手法则，则 $display(display(intc_L arrow(A) dot dif arrow(l))/(S))$ 称为矢量场 $arrow(A) (M)$ 沿封闭曲线 $L$ 的绕法矢量 $arrow(n)$ 的#def[平均循环量]，即循环量关于面积的平均变化率。
+]
+
+#definition(name: [环量密度])[
+  设 $arrow(A) = arrow(A) (M)$ 是一个矢量场，$L$ 是场中的一条封闭光滑曲线，$S$ 是以 $L$ 为边界的任意光滑曲面，其面积也记为 $S$，$L$ 的方向与曲面 $S$ 的法矢量 $arrow(n)$ 的方向符合右手法则，如果平均循环量 $display(display(intc_L arrow(A) dot dif arrow(l))/(S))$ 当曲面 $S$ 按任意方式无限收缩于点 $M$ 时，极限 $display(lim_(S -> M) display(intc_L arrow(A) dot dif arrow(l))/S)$ 存在，则称此极限为矢量场 $arrow(A) (M)$ 在点 $M$ 处绕 $arrow(n)$ 的#def[环量密度]。
+
+]
+
+#definition(name: [旋度])[
+  设矢量场 $arrow(A) (x,y,z) = P(x,y,z) arrow(i) + Q(x,y,z) arrow(j) + R(x,y,z) arrow(k)$ 满足 Stocks 公式的条件，则
+  $
+    intc_L arrow(A) dot dif arrow(l)
+    &= intc_L P dx + Q dy + R dz\
+    &= iintb(S) ((diff R) / (diff y) - (diff Q) / (diff z)) dy dz
+    + ((diff P) / (diff z) - (diff R) / (diff x)) dz dx
+    + ((diff Q) / (diff x) - (diff P) / (diff y)) dx dy\
+    &= iintb(S) (
+      ((diff R) / (diff y) - (diff Q) / (diff z)) arrow(i)
+      + ((diff P) / (diff z) - (diff R) / (diff x)) arrow(j)
+      + ((diff Q) / (diff x) - (diff P) / (diff y)) arrow(k)
+    ) dot (dy dz arrow(i) + dz dx arrow(j) + dx dy arrow(k)))\
+    &defeq iintb(S) rot arrow(A) dot arrow(dif S)
+    = iintb(S) rot arrow(A) dot arrow(n^circle.small) dif S
+  $
+
+  即称
+  #set math.mat(delim: "|")
+  $
+    rot arrow(A)
+    = ((diff R) / (diff y) - (diff Q) / (diff z)) arrow(i)
+    + ((diff P) / (diff z) - (diff R) / (diff x)) arrow(j)
+    + ((diff Q) / (diff x) - (diff P) / (diff y)) arrow(k)
+    defeq mat(
+      arrow(i), arrow(j), arrow(k);
+      display(diff/(diff x)), display(diff/(diff y)), display(diff/(diff z));
+      P, Q, R;
+    )
+  $
+  #set math.mat(delim: "(")
+  为矢量场 $arrow(A)$ 在点 $M$ 处的#def[旋度]。
+]
+
+#theorem(name: [旋度与环量密度的关系])[
+  矢量场 $arrow(A) (M)$ 在点 $M$ 处绕 $arrow(n)$ 的环量密度
+  $
+    display(lim_(S->M) display(intc_L arrow(A) dot dif arrow(l))/S = lim_(S->M) display(iintb(S) rot arrow(A) dot arrow(n^circle.small) dif S)/S)
+  $
+]
