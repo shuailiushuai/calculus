@@ -53,7 +53,7 @@
   $iintsg dsg = sigma$
 ]
 
-#property(name: [二重积分的线性性质])[
+#theorem(name: [二重积分的线性性质])[
   $
     iintsg (f(x,y) + g(x,y)) dsg = iintsg f(x,y) dsg + iintsg g(x,y) dsg
   $
