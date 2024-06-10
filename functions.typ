@@ -101,3 +101,10 @@
 ]
 
 #let rot = math.bold(math.upright("rot"))
+
+#let video = "🎥"
+#let star = "🌟"
+
+#let record(text) = [
+  #video #text
+]

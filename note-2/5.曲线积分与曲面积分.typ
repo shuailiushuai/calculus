@@ -14,6 +14,8 @@
 
 == 第一类曲线积分的概念
 
+*物理背景*：曲线段的质量。
+
 #definition[
   若曲线 $L = {(x(t),y(t),z(t)) | t in [a,b]}$ 是 $RR^3$ 上的光滑曲线，则此曲线的#def[弧微分]公式为
   $
@@ -22,16 +24,32 @@
 ]
 
 #definition[
-  设 $f(x,y,z)$ 是定义在空间曲线 $L$ 上的有界函数，将 $L$ 分成任意 $n$ 个小段 $Delta s_1,Delta s_2,dots.c,Delta s_n$，记 $lambda$ 为各小段曲线 $Delta s_i$ 中的最长值（$Delta s_i$ 也表示其长度）。如果存在常数 $I in RR$，对任意的 $eps>0$，总存在 $delta>0$，使得对于任何满足 $lambda<=delta$ 的分割和任意选取的点 $(eps_i,eta_i,zeta_i) in Delta s_i$，都成立
+  设 $Gamma$ 是空间（或平面）中的一段以 $A,B$ 为端点的光滑曲线，$f(P)$ 为定义在 $Gamma$ 上的有界函数。把 $Gamma$ 分割成任意 $n$ 个小段 $Delta l_1,Delta l_1,dots.c,Delta l_n$，$Delta l_i$ 的长度仍用 $Delta l_i$ 来表示。记 $lambda = display(max_(1<=i<=n) {Delta l_i})$。$forall P_i in Delta l_i$，若和式极限
   $
-    abs(sum_(i=1)^n f(eps_i,eta_i,zeta_i) Delta s_i - I) <= eps
+    lim_(lambda->0) sum_(i=1)^n f(P_i) Delta l_i
   $
-  则称 $f$ 在曲线 $L$ 上可积，称 $I$ 为 $f$ 在 $L$ 上的#def[第一类曲线积分]，亦称为#def[对弧长的积分]，记作 $display(int_L f(x,y,z) dif s)$。
+  存在，且极限值与曲线 $Gamma$ 的分法及 $P_i$ 点的取法无关，则称上述极限为 $f(P)$ 在 $Gamma$ 上的#def[第一类曲线积分]。
 ]
 
-== 第一类曲线积分的计算
+== 平面曲线积分的计算法
 
-=== ?
+#theorem[
+  设平面曲线 $Gamma$ 的参数方程为 $display(cases(
+    x = x(t),
+    y = y(t)
+  ) space alpha <= t <= beta)$，其中 $x'(t), space y'(t)$ 在 $[alpha,beta]$ 上连续，则弧微分为 $display(dif l = sqrt(x'^2 (t) + y'^2 (t)) dif t)$。
+
+  设 $f(x,y)$ 为 $Gamma$ 上的连续函数，则
+  $
+    int_Gamma f(x,y) dif l = int_alpha^beta f(x(t), y(t)) sqrt(x'^2 (t) + y'^2 (t)) dif t
+  $
+]
+
+#note[
+  计算第一类曲线积分时，不要忘记利用对称性化简，可参考二重积分利用对称性化简的部分。
+]
+
+== 空间曲线积分的计算法
 
 #theorem[
   若曲面 $S$ 为光滑曲面，$z=z(x,y)$，$(x,y) in sigma_(x y)$（$sigma_(x y)$ 是曲面 $S$ 在 $O x y$ 平面上的投影），则
@@ -48,6 +66,20 @@
     $
     将 $dif S$ 与 $dif sigma_(x y)$ 分别积分（具体过程略）可以得到 $cos theta dif S = dif sigma$，代入可得证。
   ]
+]
+
+#tip[
+  【空间质线的转动惯量】
+
+  设有空间质线 $Gamma$，其线密度为连续函数 $mu(x,y,z)$，则质线关于 $L$ 轴的转动惯量为
+  $
+    I_L = int_Gamma overline(P P_L)^2 mu(x,y,z) dif l
+  $
+  其中，$overline(P P_L)$ 为点 $P(x,y,z)$ 到 $L$ 轴的距离。特殊的，质线关于 $x$ 轴的转动惯量为
+  $
+    I_x = int_Gamma (y^2 + z^2) mu(x,y,z) dif l
+  $
+  关于 $y,z$ 轴的转动惯量形式也相仿。
 ]
 
 = 第一类曲面积分
@@ -151,10 +183,6 @@ $
     $
   ]
 
-#note[
-  点函数积分是我们到目前为止学过的以上五种积分的总称。
-]
-
 = 第二类曲线积分
 
 == 第二类曲线积分的概念
@@ -226,6 +254,18 @@ $
   3. 写出功 $W$ 的积分表达式 $display(W = int_(Gamma_(A B)) P dx + Q dy + R dz)$ 并计算。
 ]
 
+#tip[
+  【求 $I = display(int_L P dx + Q dy)$ 的步骤】（涉及到下文的格林公式和路径无关性）
+
+  1. 先判断 $display((diff P)/(diff y) = (diff Q)/(diff x))$ 是否成立。若成立，则利用路径无关性的性质计算（注意：要求在所选路径上，$P,Q$ 及其偏导数连续）
+
+  2. 若不成立，但 $display((diff Q)/(diff x) - (diff P)/(diff y))$ 较简单；
+
+    2.1. 若 $L$ 封闭且 $P,Q$ 及其偏导数在 $L$ 所围的区域连续时，直接用格林公式。
+
+    2.2. 若非闭，则添加简单曲线使其变成封闭曲线，再用格林公式。要求添加的简单曲线与 $L$ 所围的区域上，$P,Q$ 及其偏导数连续。
+]
+
 == 格林公式
 
 #theorem[
@@ -245,7 +285,7 @@ $
 
   #proof[
     #grid(
-      columns: (4fr, 1fr),
+      columns: (3.5fr, 1fr),
       [
         若 $D$ 是二维平面上的简单闭区域，即通过 $x$ 轴上的任一点，作平行于坐标轴的直线，这条直线与 $D$ 的边界曲线 $Gamma$ 至多有两个交点，但允许其中有一段是平行于坐标轴的直线段，这时，可设
         $
@@ -283,13 +323,142 @@ $
   ]
 ]
 
-== 平面曲线积分与路径的无关性
+== 平面曲线积分与路径无关性
+
+#theorem(name: [平面曲线积分与路径无关的四个条件])[
+  设 $D$ 是一个平面单连通区域，若函数 $P(x,y)$ 和 $Q(x,y)$ 在区域 $D$ 上连续，且具有连续的一阶偏导数，则以下四个条件等价：
+
+  (1) 沿 $D$ 内任一分段光滑的封闭曲线 $L$，有 $display(intc_L P dx + Q dy = 0)$。
+
+  (2) 对 $D$ 内任一分段光滑曲线 $Gamma_(A B)$，$display(int_(Gamma_(A B)) P dx + Q dy)$ 与路径 $Gamma$ 无关，只与起点 $A$ 与终点 $B$ 的位置有关。
+
+  (3) $P dx + Q dy$ 是 $D$ 内某一函数 $u(x,y)$ 的全微分，即存在 $u(x,y),space (x,y) in D$，使 $dif u = P dx + Q dy$。
+
+  (4) $display((diff P)/(diff y) = (diff Q)/(diff x))$，$forall (x,y) in D$。·
+
+  #proof[
+    #record("2024-05-30第3-5节 00:15:00")
+  ]
+
+  #tip[
+    【原函数的求法】
+
+    若曲线积分与路径 $Gamma$ 无关，只与起点 $A$ 和终点 $B$ 的位置有关，则
+    $
+      u(x,y)
+      &= int_((x_0,y_0))^((x,y)) P(x,y) dx + Q (x,y) dy + C
+      = int_((x_0,y_0))^((x,y_0)) + int_((x,y_0))^((x,y)) + C\
+      &= int_(x_0)^x P(x,y_0) dx + int_(y_0)^y Q(x,y) dy + C
+    $
+  ]
+]
+
+#theorem(name: [平面曲线积分的牛莱公式])[
+  若 $dif u (x,y) = P dx + Q dy$，则
+  $
+    int_(Gamma_(A B)) P dx + Q dy
+    = int_A^B P dx + Q dy
+    = int_A^B dif u(x,y)
+    = atpos(u(x,y), A(x_1,y_1), B(x_2,y_2))
+    = u(x_2,y_2) - u(x_1,y_1)
+  $
+
+  #proof[
+    #record("2024-05-30第3-5节 00:32:47")
+  ]
+]
+
+== 空间曲线积分与路径无关性
+
+#definition(name: [空间线(面)单连通区域])[
+  区域 $V$ 称为#def[线(面)单连通区域]，如果 $V$ 内任一封闭曲线(面)可以不经过 $V$ 以外的点而连续收缩于 $V$ 中的一点。
+
+  #note[
+    也就是说这一空间线(面)的内部没有洞，否则包含这个洞的空间线(面)就不可能连续收缩于一点。
+  ]
+]
+
+#theorem(name: [空间曲线积分与路径无关的四个条件])[
+  设 $V$ 是一个空间线单连通区域，若函数 $P(x,y,z)$，$Q(x,y,z)$，$R(x,y,z)$ 在区域 $V$ 上连续，且具有连续的一阶偏导数，则以下四个条件等价：
+
+  (1) 对 $V$ 内任一分段光滑的封闭曲线 $L$，有 $display(intc_L P dx + Q dy + R dz) = 0$。
+
+  (2) 对 $V$ 内任一分段光滑曲线 $Gamma_(A B)$，$display(int_(Gamma_(A B)) P dx + Q dy + R dz)$ 与路径 $Gamma$ 无关，只与起点 $A$ 和终点 $B$ 的位置有关。
+
+  (3) 存在 $u(x,y,z),space (x,y,z) in V$，使 $du = P dx + Q dy + R dz$。这时，我们称 $u(x,y,z)$ 为 $P dx + Q dy + R dz$ 的一个原函数。
+
+  (4) $display((diff P)/(diff y) = (diff Q)/(diff x))$，$display((diff Q)/(diff z) = (diff R)/(diff y))$，$display((diff R)/(diff x) = (diff P)/(diff z))$，$forall (x,y,z) in V$。
+
+  #tip[
+    【原函数的求法】
+
+    既然曲线积分与路径 $Gamma$ 无关，只与起点 $A(x_0,y_0,z_0)$ 和终点 $B(x,y,z)$ 的位置有关，我们不妨设其沿着一条最简单的路径运动。
+
+    $
+      u(x,y,z) =& int_((x_0,y_0,z_0))^((x,y,z)) P(x,y,z) dx + Q(x,y,z) dy + R(x,y,z) dz + C\
+      =& int_((x_0,y_0,z_0))^((x,y_0,z_0)) + int_((x_0,y_0,z_0))^((x,y,z_0)) + int_((x_0,y_0,z_0))^((x,y,z)) + C\
+      =& int_(x_0)^x P(x,y_0,z_0) dx + int_(y_0)^y Q(x,y,z_0) dy + int_(z_0)^z R(x,y,z) dz + C
+    $
+  ]
+]
+
+#theorem(name: [空间曲线积分的牛莱公式])[
+  若 $du (x,y,z) = P dx + Q dy + R dz$，则
+  $
+    int_(Gamma_(A B)) P dx + Q dy + R dz
+    =& int_A^B P dx + Q dy + R dz
+    = int_A^B du (x,y,z)
+    = atpos(u(x,y,z), A, B)
+    = u(B) - u(A)
+  $
+]
 
 = 第二类曲面积分
 
 == 第二类曲面积分的概念
 
-= ?
+*物理背景*：流速场中流体通过某定侧曲面的流量。
+
+#definition[
+  设 $S$ 是一个光滑曲面，则 $S$ 上处处都有连续变动的切平面和法线。$forall M in S$，曲面 $S$ 在点 $M$ 处的法线有两个方向；当取定一个方向为正向时，另一个方向为负向。过点 $M$ 作曲面 $S$ d 法矢量 $arrow(n)$。在曲面 $S$ 上取定一点 $M_0$，当动点 $M$ 从 $M_0$ 出发沿曲面不越过边界的任一封闭曲线连续移动且回到原来的位置，若其指向也不变，则称这种曲面是#def[双侧曲面]，否则称这种曲面为#def[单侧曲面]。
+]
+
+#definition[
+  指定了法线方向的双侧曲面，称为#def[定侧曲面]。这里，我们只讨论双侧曲面。
+]
+
+#definition(name: [第二类曲面积分])[
+  设 $S$ 是一个有界的光滑定侧曲面，$forall M(x,y,z) in S$，点 $M$ 处的沿曲面指定侧的单位法矢量为
+  $
+    arrow(n^circle.small) = arrow(n^circle.small)(x,y,z) = cos alpha arrow(i) + cos beta arrow(j) + cos gamma arrow(k)
+  $
+  又设
+  $
+    arrow(A) = arrow(A)(x,y,z) = P(x,y,z) arrow(i) + Q(x,y,z) arrow(j) + R(x,y,z) arrow(k)
+  $
+  其中函数 $P(x,y,z)$，$Q(x,y,z)$，$R(x,y,z)$ 是定义在 $S$ 上的有界函数。则
+  $
+    arrow(A) dot arrow(n^circle.small) = P(x,y,z) cos alpha + Q(x,y,z) cos beta + R(x,y,z) cos gamma
+  $
+  所以
+  #set math.mat(delim: "|")
+  $
+    iintb(S) arrow(A) dot arrow(n^circle.small) dif S
+    &= iintb(S) P(x,y,z) cos alpha dif S + iintb(S) Q(x,y,z) cos beta dif S + iintb(S) R(x,y,z) cos gamma dif S\
+    &= iintb(S) P(x,y,z) dy dz + iintb(S) Q(x,y,z) dz dx + iintb(S) R(x,y,z) dx dy\
+    &defeq iintb(S) P(x,y,z) dy dz + Q(x,y,z) dz dx + R(x,y,z) dx dy
+    = iintb(S) mat(
+      dy dz, dz dx, dx dy;
+      P, Q, R
+    ) dif S
+  $
+  #set math.mat(delim: "(")
+  上式称为函数 $P(x,y,z),space Q(x,y,z), space R(x,y,z)$ 沿曲面 $S$ 指定侧的#def[第二类曲线积分]，也称为#def[对坐标的积分]。
+]
+
+== 第二类曲面积分的计算
+
+TBD
 
 == Stocks 公式
 
@@ -317,54 +486,9 @@ $
   ]
 ]
 
-== 空间曲线积分与路径无关性
+== 场论初步
 
-#definition(name: [空间线(面)单连通区域])[
-  区域 $V$ 称为#def[线(面)单连通区域]，如果 $V$ 内任一封闭曲线(面)可以不经过 $V$ 以外的店而连续收缩于 $V$ 中的一点。
-
-  #note[
-    也就是说这一空间线(面)的内部没有洞，否则选上这个洞的空间线(面)就不可能连续收缩于一点。
-  ]
-]
-
-#theorem[
-  设 $V$ 是一个空间线单连通区域，若函数 $P(x,y,z)$，$Q(x,y,z)$，$R(x,y,z)$ 在区域 $V$ 上连续，且具有连续的一阶偏导数，则以下四个条件等价：
-
-  (1) 对 $V$ 内任一分段光滑的封闭曲线 $L$，有 $display(intc_L P dx + Q dy + R dz) = 0$。
-
-  (2) 对 $V$ 内任一分段光滑曲线 $Gamma_(A B)$，$display(int_(Gamma_(A B)) P dx + Q dy + R dz)$ 与路径 $Gamma$ 无关，只与起点 $A$ 和终点 $B$ 的位置有关。
-
-  (3) 存在 $u(x,y,z),space (x,y,z) in V$，使 $du = P dx + Q dy + R dz$。这时，我们称 $u(x,y,z)$ 为 $P dx + Q dy + R dz$ 的一个原函数。
-
-  (4) $display((diff P)/(diff y) = (diff Q)/(diff x))$，$display((diff Q)/(diff z) = (diff R)/(diff y))$，$display((diff R)/(diff x) = (diff P)/(diff z))$，$forall (x,y,z) in V$。
-
-  #tip[
-    【原函数的求法】
-
-    既然曲线积分与路径 $Gamma$ 无关，只与起点 $A(x_0,y_0,z_0)$ 和终点 $B(x,y,z)$ 的位置有关，我们不妨设其沿着一条最简单的路径运动。
-
-    $
-      u(x,y,z) =& int_((x_0,y_0,z_0))^((x,y,z)) P(x,y,z) dx + Q(x,y,z) dy + R(x,y,z) dz + C\
-      =& int_((x_0,y_0,z_0))^((x,y_0,z_0)) + int_((x_0,y_0,z_0))^((x,y,z_0)) + int_((x_0,y_0,z_0))^((x,y,z)) + C\
-      =& int_(x_0)^x P(x,y_0,z_0) dx + int_(y_0)^y Q(x,y,z_0) dy + int_(z_0)^z R(x,y,z) dz + C
-    $
-  ]
-]
-
-== 曲线积分的牛莱公式
-
-#theorem[
-  若 $du (x,y,z) = P dx + Q dy + R dz$，则
-  $
-    int_(Gamma_(A B)) P dx + Q dy + R dz
-    =& int_A^B P dx + Q dy + R dz
-    = int_A^B du (x,y,z)
-    = atpos(u(x,y,z), A, B)
-    = u(B) - u(A)
-  $
-]
-
-== 矢量场的旋度
+=== 矢量场的旋度
 
 #definition(name: [矢量场的循环量、环量])[
   在矢量场 $arrow(A) (M)$ 中，矢量 $arrow(A) (M)$ 沿有向封闭曲线 $L$ 的曲线积分 $display(intc_L arrow(A) dot dif arrow(l))$ 称为矢量场 $arrow(A) (M)$ 沿封闭曲线 $L$ 的#def[循环量]。
