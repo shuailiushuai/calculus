@@ -99,6 +99,11 @@
   #set text(size: 0.25em, fill: red.transparentize(100%))
   #x
 ]
+#let iintcb(x) = [
+  $display(attach(integral.double.cont, b: #x, br: ""))$
+  #set text(size: 0.25em, fill: red.transparentize(100%))
+  #x
+]
 
 #let rot = math.bold(math.upright("rot"))
 
