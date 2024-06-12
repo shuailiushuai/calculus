@@ -114,7 +114,7 @@ $
   dif sigma = dif S dot.c abs(cos gamma) = sqrt(1+((diff z)/(diff x))^2 + ((diff z)/(diff y))^2) dif sigma
 $
 
-#theorem[
+#conclusion[
   设 $f(x,y,z)$ 在曲面 $S$ 上连续，若 $S:z=z(x,y),space (x,y) in sigma_(x y)$，则
   $
     iintb(S) f(x,y,z) dif S
@@ -450,19 +450,79 @@ $
     = iintb(S) mat(
       dy dz, dz dx, dx dy;
       P, Q, R
-    ) dif S
+    ) dif S \
+    &defeq arrow(A) dot arrow(dif S)\
   $
   #set math.mat(delim: "(")
   上式称为函数 $P(x,y,z),space Q(x,y,z), space R(x,y,z)$ 沿曲面 $S$ 指定侧的#def[第二类曲线积分]，也称为#def[对坐标的积分]。
 ]
 
+== 第二类曲面积分的性质
+
+#property(name: [线性性质])[
+  若 $alpha,beta$ 为常数，则有 $
+    iintb(S) (alpha arrow(A) + beta arrow(B)) arrow(dif S)
+    = alpha iintb(S) arrow(A) dot arrow(dif S)
+    + beta iintb(S) arrow(B) dot arrow(dif S)
+  $
+]
+
+#property(name: [对定侧曲面的可加性])[
+  若曲面 $S$ 分为两个曲面 $S_1$ 与 $S_2$，满足 $S = S_1 union S_2$，且 $S_1$ 与 $S_2$ 没有公共内点，但不改变曲面的侧，则
+  $
+    iintb(S) arrow(A) dot arrow(dif S)
+    = iintb(S_1) arrow(A) dot arrow(dif S)
+    + iintb(S_2) arrow(A) dot arrow(dif S)
+  $
+]
+
+#property(name: [方向性])[
+  若 $S^-$ 表示曲面 $S$ 的另一侧，则
+  $
+    iintb(S) arrow(A) dot arrow(dif S)
+    = - iintb(S^-) arrow(A) dot arrow(dif S)
+  $
+  #proof[
+    这是因为曲面不同的侧，每点处的 $arrow(n^circle.small)$ 方向恰好相反，故面积的投影相差一个负号。
+  ]
+]
+
 == 第二类曲面积分的计算
 
-TBD
+第二类曲面积分的三个部分要分开计算，下面以 $display(iintb(S) R(x,y,z) dx dy)$ 为例。其中 $dx dy = cos gamma dif S$。考虑到：
+$
+  dx dy = cos gamma dif S = cases(
+  dif sigma\,&quad cos gamma > 0,
+  0\,&quad cos gamma = 0,
+  -dif sigma\,&quad cos gamma < 0
+)
+$
+我们可以得到
+#conclusion[
+  $
+    iintb(S) R(x,y,z) dx dy
+    = cases(
+      display(iintb(sigma_(x y)) R(x,y,z(x,y)) dif sigma \,&quad gamma in [0,pi/2)),
+      display(0 \,&quad gamma = pi/2),
+      display(-iintb(sigma_(x y)) R(x,y,z(x,y)) dif sigma \,&quad gamma in (pi/2,pi]),
+    )
+  $
+]
+
+== 高斯公式
+
+#theorem(name: [高斯公式])[
+  设 $V$ 是一个空间有界闭区域，它的边界 $S$ 由有限多个分片光滑曲面所围成。函数 $P(x,y,z)$，$Q(x,y,z)$，$R(x,y,z)$ 在 $V$ 上连续，且具有连续的偏导数，则
+  $
+    iintcb(S) P dy dz + Q dz dx + R dx dy
+    = iiintb(V) ((diff P) / (diff x) + (diff Q) / (diff y) + (diff R) / (diff z)) dif V
+  $
+  其中上式左端的曲面 $S$ 取外侧，$cos alpha, cos beta, cos gamma$ 是曲面 $S$ 外法线的方向余弦。
+]
 
 == Stocks 公式
 
-#theorem[
+#theorem(name: [Stocks 公式])[
   设函数 $P(x,y,z)$，$Q(x,y,z)$，$R(x,y,z)$ 及其一阶偏导数在空间区域 $Omega$ 上连续，$S$ 是 $Omega$ 内的一张光滑曲面，曲面 $S$ 的边界曲线 $L$ 是分段光滑的连续曲线，$S$ 的法线方向与 $L$ 的方向符合右手法则（即人在 $S$ 的正侧沿 $L$ 行走时，$S$ 总位于他的左边），则
   #set math.mat(delim: "|")
   $
@@ -487,6 +547,17 @@ TBD
 ]
 
 == 场论初步
+
+=== 方向导数与梯度
+
+TBD
+
+=== 通量与散度
+
+TBD // https://classroom.zju.edu.cn/livingroom?course_id=60204&sub_id=1157684&tenant_code=112
+
+#definition(name: [])[
+]
 
 === 矢量场的旋度
 

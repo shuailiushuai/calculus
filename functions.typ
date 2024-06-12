@@ -81,27 +81,27 @@
 
 #let intb(x) = [
   $display(attach(integral, b: #x, br: ""))$
-  #set text(size: 0.25em, fill: red.transparentize(100%))
+  #set text(size: 0.25em, fill: red.transparentize(98%))
   #x
 ]
 #let iintb(x) = [
   $display(attach(integral.double, b: #x, br: ""))$
-  #set text(size: 0.25em, fill: red.transparentize(100%))
+  #set text(size: 0.25em, fill: red.transparentize(98%))
   #x
 ]
 #let iiintb(x) = [
   $display(attach(integral.triple, b: #x, br: ""))$
-  #set text(size: 0.25em, fill: red.transparentize(100%))
+  #set text(size: 0.25em, fill: red.transparentize(98%))
   #x
 ]
 #let intcb(x) = [
   $display(attach(integral.cont, b: #x, br: ""))$
-  #set text(size: 0.25em, fill: red.transparentize(100%))
+  #set text(size: 0.25em, fill: red.transparentize(98%))
   #x
 ]
 #let iintcb(x) = [
-  $display(attach(integral.double.cont, b: #x, br: ""))$
-  #set text(size: 0.25em, fill: red.transparentize(100%))
+  $display(attach(integral.surf, b: #x, br: ""))$
+  #set text(size: 0.25em, fill: red.transparentize(98%))
   #x
 ]
 
