@@ -106,16 +106,20 @@ $
   设位于点 $(0,1)$ 的质点 $A$ 对质点 $M$ 的引力大小为 $G"/"r^2$（$G>0$ 为万有引力系数，$r$ 为质点 $A$ 与 $M$ 之间的距离），质点 $M$ 沿曲线 $y=sqrt(2x - x^2)$ 自 $B(2,0)$ 运动到 $O(0,0)$，求在此过程中点 $A$ 对质点 $M$ 的引力所做的功。
 ]
 
-TBD
-
-// 取曲线上任一点 $M(0-x,1-y)$，有 $arrow(A M) = {x,y}$。满足
-// $
-//   (0-x)^2 - 2(0-x) + (1-y)^2 = 0
-// $
-
-// $
-//   W = int G / r^2 dif r =
-// $
+万有引力的方向即两点间连线的方向，故：
+$
+  W
+  &= int_accent(B M O, paren.t) arrow(A) dot arrow(T^circle.small) dif l
+  = int_accent(B M O, paren.t) G / r^3 (x dx + (y-1) dy)
+$
+其中 $display(r = sqrt(x^2 + (y-1)^2))$。从物理意义出发，可验证 $display((diff Q)/(diff x) = (diff P)/(diff y))$ 且连续，故积分关于路径无关：
+$
+  W
+  &= int_overline(B O) G / r^3 (x dx + (y-1) dy)
+  = int_2^0 (x dx) / ((sqrt(x^2+1))^3)
+  = k(1-1 / sqrt(5))
+$
+// #align(center, image("images/2024-06-12-11-51-46.png", width: 100%))
 
 == P213 7(1)
 #prob[
@@ -127,10 +131,13 @@ TBD
   $
 ]
 
-设 $D$ 为星形线所围成的区域，由格林公式得：
+设 $D$ 为星形线所围成的区域，由格林公式得（取 $display(P = -1/2\;space Q=1/2)$）：
 $
   S =& iintb(D) dx dy
-  = 
+  = 1 / 2 intc_C x dy - y dx
+  = (3 a b) / 2 int_0^(2 pi) (cos^4 t sin^2 t + cos^2 t sin^4 t) dif t \
+  =& 3 / 8 a b int_0^(2 pi) sin^2 t dif t
+  = 3 / 8 pi a b
 $
 
 == P213 8(1)
@@ -141,6 +148,15 @@ $
   $
 ]
 
+$P = x + y;space Q = x-y$ 都连续。且 $display((diff Q)/(diff x) = (diff P)/(diff y) = 1)$ 都连续。故原积分关于路径无关：
+
+$
+  & int_((0,1))^((2,3)) (x+y) dx + (x-y) dy
+  = int_((0,1))^((2,1)) (x+y) dx + int_((2,1))^((2,3)) (x-y) dy\
+  =& int_0^2 (x+1) dx + int_1^3 (2-y) dy
+  = 4 + 0 = 4
+$
+
 == P213 8(3)
 #prob[
   计算第二类曲线积分：
@@ -150,6 +166,14 @@ $
   沿着与直线 $y=x$ 不相交的路径。
 ]
 
+由于 $display((diff Q)/(diff x)=(diff P)/(diff y))$ 且连续，故原积分关于路径无关：
+$
+  int_((0,-1))^((1,0)) (x dy - y dx) / ((x-y)^2)
+  =& int_(0)^1 dx / ((x+1)^2) + int_(-1)^0 dy / ((1-y)^2)
+  =& (atpos(-1/(1+x), 0, 1)) + (atpos(1/(1-y), -1, 0))
+  = 1
+$
+
 == P213 9(1)
 #prob[
   求原函数 $u$：
@@ -157,6 +181,17 @@ $
     dif u = (x^2 + 2x y - y^2) dx + (x^2 - 2 x y - y^2) dy
   $
 ]
+$
+  (diff Q) / (diff x) = 2x - 2y; quad
+  (diff P) / (diff y) = 2x - 2y
+$
+故 $display((diff Q) / (diff x) = (diff P)/(diff y))$ 且连续， 原积分关于路径无关。可以求得其原函数：
+$
+  u(x,y)
+  &= int_0^x P(x,0) dx + int_0^y Q(x,y) dy + C
+  = int_0^x x^2 dx + int_0^y (x^2 - 2x y - y^2) dy + C\
+  &= x^3 / 3 + x^2 y - x y^2 - y^3 / 3 + C
+$
 
 == P213 9(2)
 #prob[
@@ -165,3 +200,21 @@ $
     dif u = (y dx - x dy) / (3x^2 - 2x y + 3y^2)
   $
 ]
+$
+  (diff Q) / (diff x)
+  &= diff / (diff x) ((-x) / (3x^2 - 2 x y + 3 y^2))
+  = (-(3x^2 - 2 x y + 3 y^2) + x(6x - 2y)) / ((3x^2 - 2 x y + 3 y^2)^2)
+  = (3(x^2-y^2)) / ((3x^2 - 2 x y + 3 y^2)^2)\
+  (diff P) / (diff y)
+  &= diff / (diff y) ((y) / (3x^2 - 2 x y + 3 y^2))
+  = ((3x^2 - 2 x y + 3 y^2) - y(2x + 6y)) / ((3x^2 - 2 x y + 3 y^2)^2)
+  = (3(x^2 - y^2)) / ((3x^2 - 2 x y + 3 y^2)^2)
+$
+故 $display((diff Q) / (diff x) = (diff P)/(diff y))$ 且连续， 原积分关于路径无关。可以求得其原函数：
+$
+  u(x,y)
+  &= int_0^x P(x,0) dx + int_0^y Q(x,y) dy + C
+  = int_0^y (-x dy) / (3x^2 -2x y + 3y^2) + C\
+  &= -x / 3 int_0^y dy / (y^2 - 2 / 3 x y + x^2) + C
+  = -1 / (2 sqrt(2)) arctan (3y-x) / (2 sqrt(2) x) + C // TBD：好难算
+$
