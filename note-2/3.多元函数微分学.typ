@@ -577,11 +577,11 @@ $
 === 空间曲线的切线与法平面
 
 #theorem[
-  设空间曲线 $Gamma$ 的方程为 $display(cases(x=x(t),y=y(t),z=z(t)))$，其中 $x'(t),y'(t),z'(t)$ 连续且不同时为零。设 $P(x_0,y_0,z_0) = P(t_0) in Gamma$。则曲线 $Gamma$ 在点 $P$ 处的切线方程为
+  设空间曲线 $Gamma$ 的方程为 $display(cases(x=x(t),y=y(t),z=z(t)))$，其中 $x'(t),y'(t),z'(t)$ 连续且不同时为零。设 $P(x_0,y_0,z_0) = P(t_0) in Gamma$。则曲线 $Gamma$ 在点 $P$ 处的#def[切线]方程为
   $
     (x-x_0) / (x'(t_0)) = (y-y_0) / (y'(t_0)) = (z-z_0) / (z'(t_0))
   $
-  法平面方程为
+  #def[法平面]方程为
   $
     x'(t_0) (x-x_0) + y'(t_0) (y-y_0) + z'(t_0) (z-z_0) = 0
   $

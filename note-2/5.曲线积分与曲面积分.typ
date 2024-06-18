@@ -49,23 +49,11 @@
   计算第一类曲线积分时，不要忘记利用对称性化简，可参考二重积分利用对称性化简的部分。
 ]
 
-== 空间曲线积分的计算法
-
-#theorem[
-  若曲面 $S$ 为光滑曲面，$z=z(x,y)$，$(x,y) in sigma_(x y)$（$sigma_(x y)$ 是曲面 $S$ 在 $O x y$ 平面上的投影），则
+#note[
+  若曲线 $Gamma$ 的方程为 $r=r(theta),space theta in [alpha,beta]$，则
   $
-    iintb(S) f(x,y,z) dif S = iintb(sigma_(x y)) f(x,y,z(x,y)) sqrt(1+z'_x^2+z'_y^2) dif sigma
+    int_Gamma f(x,y) dif s = int_alpha^beta f(r cos theta, r sin theta) sqrt(r^2 (theta) + r'^2 (theta)) dif theta
   $
-
-  还可以投影到平面 $O x z$、$O y z$ 上，得到两个形式相似的式子。
-
-  #proof[
-    由于 $dif S$ 很小，可以把 $dif S$ 看做一个平面，则平面 $dif S$ 与平面 $sigma_(x y)$（也就是 $O x y$）的夹角 $theta$（取锐角）的余弦为
-    $
-      cos theta = 1 / sqrt(z'_x^2 + z'_y^2 + 1)
-    $
-    将 $dif S$ 与 $dif sigma_(x y)$ 分别积分（具体过程略）可以得到 $cos theta dif S = dif sigma$，代入可得证。
-  ]
 ]
 
 #tip[
@@ -287,7 +275,7 @@ $
     #grid(
       columns: (3.5fr, 1fr),
       [
-        若 $D$ 是二维平面上的简单闭区域，即通过 $x$ 轴上的任一点，作平行于坐标轴的直线，这条直线与 $D$ 的边界曲线 $Gamma$ 至多有两个交点，但允许其中有一段是平行于坐标轴的直线段，这时，可设
+        (i) 若 $D$ 是二维平面上的简单闭区域（既是 $x$ 型区域又是 $y$ 型区域，即通过 $x$ 轴上的任一点，作平行于坐标轴的直线，这条直线与 $D$ 的边界曲线 $Gamma$ 至多有两个交点，但允许其中有一段是平行于坐标轴的直线段，这时，可设
         $
           D = {(x,y) | y_1(x)<=y<=y_2(x),space a<=x<=b}。
         $
@@ -319,7 +307,9 @@ $
       intcb(Gamma) P dx + Q dy = iintb(D) ((diff Q) / (diff x) - (diff P) / (diff y)) dif sigma
     $
 
-    TBD：Ep 13-2 内里有洞的情形 01:15:23
+    (ii) 若 $D$ 是一条按段光滑的闭曲线 $Gamma$ 围成的，则可用几段光滑曲线将 $D$ 分成有限个满足 (i) 的区域，然后应用 (i) 中的方法可推得相应的格林公式。
+
+    (iii) 若 $D$ 是由多条曲线所围成的，同样可以应用类似方法。
   ]
 ]
 
@@ -511,6 +501,8 @@ $
 
 == 高斯公式
 
+格林公式建立了沿封闭曲线的第二类曲线积分与二重积分的联系，类似地，沿空间闭曲面的第二类曲面积分和三重积分也有类似的联系。
+
 #theorem(name: [高斯公式])[
   设 $V$ 是一个空间有界闭区域，它的边界 $S$ 由有限多个分片光滑曲面所围成。函数 $P(x,y,z)$，$Q(x,y,z)$，$R(x,y,z)$ 在 $V$ 上连续，且具有连续的偏导数，则
   $
@@ -548,15 +540,12 @@ $
 
 == 场论初步
 
-=== 方向导数与梯度
-
-TBD
-
 === 通量与散度
 
-TBD // https://classroom.zju.edu.cn/livingroom?course_id=60204&sub_id=1157684&tenant_code=112
+// TBD：https://classroom.zju.edu.cn/livingroom?course_id=60204&sub_id=1157684&tenant_code=112
 
-#definition(name: [])[
+#definition(name: [散度])[
+  设 $arrow(A)(x,y,z) = P(x,y,z) arrow(i)$
 ]
 
 === 矢量场的旋度

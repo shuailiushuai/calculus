@@ -386,28 +386,10 @@ TBD
   那么，方程 $F(x, y, z)=0$ 叫做曲面 $S$ 的方程；曲面 $S$ 叫做 $F(x,y,z)=0$ 的图形。
 ]
 
-#definition(name: "球面方程")[
-  球心在点 $M_0(x_0,y_0,z_0)$，半径为 $R$ 的#def[球面方程]为：
-  $ (x-x_0)^2 + (y-y_0)^2 + (z-z_0)^2 = R^2 $
-]
-
 #definition(name: "曲面的参数方程")[
   曲面 $S$ 的参数方程为：
   $ cases(x=x(u,v), y=y(u,v), z=z(u,v)) $
   其中 $u,v$ 是参数。
-
-  #note[
-    特别地，球面的参数方程为：
-    $
-      cases(
-			x = x_0 + R sin phi cos theta,
-			y = y_0 + R sin phi sin theta,
-			z = z_0 + R cos phi
-		), quad (
-        0 <= phi <= pi,space 0 <= theta <= 2 pi
-      )
-    $
-  ]
 ]
 
 === 空间曲线
