@@ -292,7 +292,7 @@ $
         $
       ],
       [
-        #align(center, image("images/2024-06-07-21-49-14.png", width: 100%))
+        // #align(center, image("images/2024-06-07-21-49-14.png", width: 100%))
       ],
     )
     设 $Gamma_1$ 是区域 $D$ 下方的一段边界曲线，$Gamma_2$ 是上方的一段，$Gamma_3$ 是垂直的一段，则

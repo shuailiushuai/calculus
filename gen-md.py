@@ -149,7 +149,8 @@ def gen_md(source, slug, frontmatter=dict(), target_dir='tmp'):
 
 
 if __name__ == '__main__':
-    target_dir = os.environ['GATSBY_SOURCE']
+    # target_dir = os.environ['GATSBY_SOURCE']
+    target_dir = "E:\Git\gatsby-blog\content"
     for task in read_file('gen-md.csv').split('\n'):
         source_file, slug, title = task.split('\t')
         gen_md(read_file(source_file), slug, dict(title=title), target_dir)
