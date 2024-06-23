@@ -321,7 +321,8 @@
       x = rho sin phi cos theta,
       y = rho sin phi sin theta,
       z = rho cos phi
-    ))
+    )) quad quad 
+    (0 <= phi <= pi; space 0 <= theta <= 2pi)
   $
   称为点 $P$ 的#def[球面坐标]。
 ]
