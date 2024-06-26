@@ -5,7 +5,7 @@
   course_fullname: "Calculus (A) I",
   course_code: "821T0150",
   semester: "Autumn-Winter 2023",
-  title: "Note #2 极限",
+  title: "Note #2: 极限",
   authors: (
     (
       name: "memset0",

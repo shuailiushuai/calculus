@@ -5,7 +5,7 @@
   course_fullname: "Calculus (A) I",
   course_code: "821T0150",
   semester: "Autumn-Winter 2023",
-  title: "Note #3 导数与微分",
+  title: "Note #3: 导数与微分",
   authors: (
     (
       name: "memset0",
@@ -36,10 +36,8 @@
 ]
 
 #theorem[
-  可导一定连续，连续不一定可导。
+  可导一定连续，连续不一定可导。（如 $y=abs(x)$ 在 $x=0$ 处连续但不可导。）
 ]
-
-#note[反例：$y=|x|$ 在 $x=0$ 处连续，但不可导。]
 
 == 高阶导数的定义
 

@@ -5,7 +5,7 @@
   course_fullname: "Calculus (A) I",
   course_code: "821T0150",
   semester: "Autumn-Winter 2023",
-  title: "Note #5 微积分的应用",
+  title: "Note #6: 微积分的应用",
   authors: (
     (
       name: "memset0",

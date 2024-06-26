@@ -5,7 +5,7 @@
   course_fullname: "Calculus (A) I",
   course_code: "821T0150",
   semester: "Autumn-Winter 2023",
-  title: "Note #1 基础知识",
+  title: "Note #1: 基础知识",
   authors: (
     (
       name: "memset0",

@@ -5,7 +5,7 @@
   course_fullname: "Calculus (A) I",
   course_code: "821T0150",
   semester: "Autumn-Winter 2023",
-  title: "Calculus Note #4",
+  title: "Note #5: 积分",
   authors: (
     (
       name: "memset0",
