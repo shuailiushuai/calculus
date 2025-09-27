@@ -7,6 +7,7 @@ manages public debt, and implements fiscal rules.
 
 using Agents
 using Statistics
+using StatsBase
 
 """
 Government agent with comprehensive fiscal operations.

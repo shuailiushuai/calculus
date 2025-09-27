@@ -197,6 +197,117 @@ function model_step!(model::KSModel)
 end
 
 """
+    credit_market_phase!(model::KSModel)
+
+Execute credit market operations and bank lending decisions.
+"""
+function credit_market_phase!(model::KSModel)
+    # Step 1: Firms submit credit applications
+    for firm in values(model.model.agents)
+        if firm isa Firm1 || firm isa Firm2
+            submit_credit_applications!(firm, model)
+        end
+    end
+    
+    # Step 2: Banks process applications
+    for bank in values(model.model.agents)
+        if bank isa Bank
+            step_bank!(bank, model)
+        end
+    end
+    
+    # Step 3: Execute approved loans
+    execute_credit_transactions!(model)
+end
+
+"""
+    submit_credit_applications!(firm::Union{Firm1, Firm2}, model::KSModel)
+
+Firm submits credit applications to banks based on financing needs.
+"""
+function submit_credit_applications!(firm::Union{Firm1, Firm2}, model::KSModel)
+    # Calculate credit demand
+    credit_needed = 0.0
+    
+    # Working capital needs
+    if firm.labor_cost > firm.cash * 0.8
+        credit_needed += firm.labor_cost - firm.cash * 0.8
+    end
+    
+    # Investment financing (for Sector 2)
+    if firm isa Firm2 && firm.desired_investment > 0
+        if firm.cash < firm.desired_investment
+            credit_needed += firm.desired_investment - firm.cash
+        end
+    end
+    
+    # R&D financing (for Sector 1)
+    if firm isa Firm1 && firm.rd_expenditure > 0
+        if firm.cash < firm.rd_expenditure
+            credit_needed += firm.rd_expenditure - firm.cash
+        end
+    end
+    
+    firm.credit_demand = credit_needed
+    
+    # Submit applications to banks if credit needed
+    if credit_needed > 0
+        banks = [agent for agent in values(model.model.agents) if agent isa Bank]
+        
+        if !isempty(banks)
+            # Apply to 1-3 random banks
+            num_applications = min(3, length(banks))
+            selected_banks = sample(banks, num_applications, replace=false)
+            
+            for bank in selected_banks
+                purpose = firm isa Firm1 ? "R&D" : "investment"
+                push!(bank.credit_applications, (firm.id, credit_needed, purpose))
+            end
+        end
+    end
+end
+
+"""
+    execute_credit_transactions!(model::KSModel)
+
+Execute approved credit transactions between banks and firms.
+"""
+function execute_credit_transactions!(model::KSModel)
+    for bank in values(model.model.agents)
+        if bank isa Bank
+            for (firm_id, loan_amount, interest_rate) in bank.approved_loans
+                if haskey(model.model.agents, firm_id)
+                    firm = model.model.agents[firm_id]
+                    
+                    # Transfer funds to firm
+                    firm.cash += loan_amount
+                    firm.debt += loan_amount
+                    
+                    println("Firm $(firm.id) received loan of $(loan_amount) at $(interest_rate*100)% rate")
+                end
+            end
+            
+            # Clear approved loans for next period
+            empty!(bank.approved_loans)
+        end
+    end
+end
+
+"""
+    government_phase!(model::KSModel)
+
+Execute government operations and fiscal policy.
+"""
+function government_phase!(model::KSModel)
+    for government in values(model.model.agents)
+        if government isa Government
+            step_government!(government, model)
+            break
+        end
+    end
+end
+
+"""
     run_simulation!(model::KSModel; steps::Int = model.params.max_steps)
 
 Run the complete simulation for the specified number of steps.

@@ -8,6 +8,7 @@ and wage determination with complete search probabilities and queue-based proces
 using Agents
 using Distributions
 using Statistics
+using StatsBase
 
 """
     initialize_labor_market!(model::KSModel)
